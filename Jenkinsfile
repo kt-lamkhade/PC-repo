@@ -13,12 +13,12 @@ pipeline{
     }
     stage("test"){
       steps{
-        echo'Testing the application, ${region}"
+        echo"Testing the application, ${region}"
       }
     }
     stage("deploy"){
       steps{
-        echo'Deploing the application, ${environment}'
+        echo"Deploing the application, ${environment}"
       }
     }    
   
