@@ -3,7 +3,7 @@ pipeline{
   parameters{
     string(name: 'INSTANCE_NAME', defaultValue: '', description: 'Provide the name of instance: ')
     choice(name: 'REGION', choices: ['us-east-1', 'us-east-2'], description: 'Select Region for deployment: ')
-    choice(name: 'ENVIRONMENT', choices: ['DEV', 'PROD'], description: 'Select the environment for this deployment ')
+    choice(name: 'ENVIRONMENT', choices: ['DEV', 'PROD'], description: 'Select the environment for this deployment: ')
     }
   stages {
     stage("build"){
@@ -15,7 +15,7 @@ pipeline{
       when{
         expression {parame.ENVIRONMENT = 'DEV'}
       }
-      step{
+      steps{
         echo "Deploying to ${params.ENVIRONMENT}"
       }
     }
