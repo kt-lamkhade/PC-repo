@@ -19,5 +19,14 @@ pipeline{
         echo "Deploying to ${params.ENVIRONMENT}"
       }
     }
+    stage("Deploy to production environment"){
+      when{
+        expression { params.ENVIRONMENT == 'PROD' }
+      }
+      steps{
+        input message: 'Confirm deployment to production....', ok: 'Deploy'
+        echo "Deploying to ${params.ENVIRONMENT}"
+      }
+    }
   }
 }
