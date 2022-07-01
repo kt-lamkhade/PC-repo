@@ -13,7 +13,7 @@ pipeline{
     }
     stage("Deploy to non-production environment"){
       when{
-        expression {parame.ENVIRONMENT = 'DEV'}
+        expression {params.ENVIRONMENT = 'DEV'}
       }
       steps{
         echo "Deploying to ${params.ENVIRONMENT}"
