@@ -2,7 +2,7 @@ pipeline{
   agent any
   parameters{
     string(name: 'instance_name', defaultValue: '', description: 'Please mention name of instance: ')
-    choice(name: 'region', choices: ['us-ease-1', 'us-east-2'], description: 'Select Region for deployment: ')
+    choice(name: 'region', choices: ['us-east-1', 'us-east-2'], description: 'Select Region for deployment: ')
     choice(name: 'environment', choices: ['dev', 'prod'], description: ' Select environmentL ')
     }
   stages {
