@@ -14,11 +14,11 @@ pipeline{
     stage("Deploy to non-production environment"){
       when{
         expression { params.ENVIRONMENT == 'DEV' }
-        sh('chmod +x ./testscript.py')
-        sh('./testscript.py')
       }
       steps{
         echo "Deploying to ${params.ENVIRONMENT}"
+        sh('chmod +x ./testscript.py')
+        sh('./testscript.py')
       }
     }
     stage("Deploy to production environment"){
