@@ -18,7 +18,7 @@ pipeline{
       steps{
         echo "Deploying to ${params.ENVIRONMENT}"
         sh('chmod +x ./testscript.py')
-        sh('python3 ./testscript.py')
+        sh('python.exe testscript.py')
       }
     }
     stage("Deploy to production environment"){
