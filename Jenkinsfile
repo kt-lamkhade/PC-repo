@@ -17,7 +17,7 @@ pipeline{
       }
       steps{
         echo "Deploying to ${params.ENVIRONMENT}"
-        sh """chmod +x testscript.py
+        sh """chmod +x testscript.sh
          ./testscript.sh"""
       }
     }
