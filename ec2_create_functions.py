@@ -2,8 +2,8 @@
 import boto3
 import sys
 import time
-NAME = input("Please provide server name: ")
-INSTANCE_TYPE = input("Please provide instance type. e.g: t2.micro : ")
+#NAME = input("Please provide server name: ")
+#INSTANCE_TYPE = input("Please provide instance type. e.g: t2.micro : ")
 ec2 = boto3.resource("ec2")
 ec2_client = boto3.client("ec2")
 s3_client = boto3.client("s3")
