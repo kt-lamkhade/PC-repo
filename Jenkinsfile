@@ -19,7 +19,7 @@ pipeline{
       steps{
         echo "Deploying to ${params.ENVIRONMENT}"
         sh """chmod +x ec2_create_functions.py
-        python ./ec2_create_functions.py ${INSTANCE_NAME} ${INSTANCE_TYPE} ${AWS_REGION}"""
+        python ./ec2_create_functions.py ${INSTANCE_NAME} ${AWS_REGION} ${INSTANCE_TYPE}"""
       }
     }
     stage("Deploy to production environment"){
