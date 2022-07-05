@@ -8,8 +8,8 @@ from config import *
 NAME = sys.argv[0]
 INSTANCE_TYPE = sys.argv[1]
 AWS_REGION_NAME = sys.argv[2]
-AWS_ACCESS_KEY_ID = config.AWS_ACCESS_KEY_ID
-AWS_ACCESS_KEY_ID = config.AWS_SECRET_ACCESS_KEY
+#AWS_ACCESS_KEY_ID = config.AWS_ACCESS_KEY_ID
+#AWS_ACCESS_KEY_ID = config.AWS_SECRET_ACCESS_KEY
 ec2 = boto3.resource("ec2", region_name=AWS_REGION_NAME, aws_access_key_id=AWS_ACCESS_KEY_ID, aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
 ec2_client = boto3.client("ec2", region_name=AWS_REGION_NAME, aws_access_key_id=AWS_ACCESS_KEY_ID, aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
 s3_client = boto3.client("s3", region_name=AWS_REGION_NAME, aws_access_key_id=AWS_ACCESS_KEY_ID, aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
