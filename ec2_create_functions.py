@@ -20,7 +20,7 @@ def create_instance():
                                         MinCount=1,
                                         MaxCount=1,
                                         InstanceType= INSTANCE_TYPE,
-                                        KeyName="ec2-keypair_useast2",
+                                        KeyName="ec2_keypair_useast1",
                                         TagSpecifications=[
                                             {
                                                 'ResourceType': "instance",
