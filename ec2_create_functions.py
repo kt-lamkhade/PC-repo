@@ -2,7 +2,7 @@
 import boto3
 import sys
 import time
-from config import *
+from /devlopment1/PC-repo/config import *
 #NAME = input("Please provide server name: ")
 #INSTANCE_TYPE = input("Please provide instance type. e.g: t2.micro : ")
 print("Instance Created: ", sys.argv)
