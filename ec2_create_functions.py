@@ -16,7 +16,7 @@ s3_client = boto3.client("s3", region_name=AWS_REGION_NAME, aws_access_key_id=AW
 def create_instance():
     
     New_instances = ec2_client.run_instances(
-                                        ImageId="ami-0cff7528ff583bf9a",
+                                        ImageId="ami-02d1e544b84bf7502",
                                         MinCount=1,
                                         MaxCount=1,
                                         InstanceType= INSTANCE_TYPE,
