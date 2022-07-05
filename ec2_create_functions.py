@@ -9,7 +9,7 @@ NAME = sys.argv[1]
 INSTANCE_TYPE = sys.argv[2]
 AWS_REGION_NAME = sys.argv[3]
 print(NAME," ", INSTANCE_TYPE," ", AWS_REGION_NAME)
-"""ec2 = boto3.resource("ec2", region_name=AWS_REGION_NAME)
+ec2 = boto3.resource("ec2", region_name=AWS_REGION_NAME)
 ec2_client = boto3.client("ec2", region_name=AWS_REGION_NAME)
 s3_client = boto3.client("s3", region_name=AWS_REGION_NAME)
 def create_instance():
@@ -58,4 +58,4 @@ def details():
     
     bucket_create(bucket_name=New_instances['Instances'][0]['InstanceId'])
 
-details()"""
+details()
