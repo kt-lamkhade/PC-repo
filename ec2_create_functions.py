@@ -2,19 +2,25 @@
 import boto3
 import sys
 import time
-NAME = input("Please provide server name: ")
-INSTANCE_TYPE = input("Please provide instance type. e.g: t2.micro : ")
-ec2 = boto3.resource("ec2")
-ec2_client = boto3.client("ec2")
-s3_client = boto3.client("s3")
+from config import *
+#NAME = input("Please provide server name: ")
+#INSTANCE_TYPE = input("Please provide instance type. e.g: t2.micro : ")
+print("Instance Created: ", sys.argv)
+NAME = sys.argv[1]
+INSTANCE_TYPE = sys.argv[2]
+AWS_REGION_NAME = sys.argv[3]
+print(NAME," ", INSTANCE_TYPE," ", AWS_REGION_NAME)
+ec2 = boto3.resource("ec2", region_name=AWS_REGION_NAME, aws_access_key_id=AWS_ACCESS_KEY_ID, aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+ec2_client = boto3.client("ec2", region_name=AWS_REGION_NAME, aws_access_key_id=AWS_ACCESS_KEY_ID, aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+s3_client = boto3.client("s3", region_name=AWS_REGION_NAME, aws_access_key_id=AWS_ACCESS_KEY_ID, aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
 def create_instance():
     
     New_instances = ec2_client.run_instances(
-                                        ImageId="ami-0d91a7c2ab81726af",
+                                        ImageId="ami-02d1e544b84bf7502",
                                         MinCount=1,
                                         MaxCount=1,
                                         InstanceType= INSTANCE_TYPE,
-                                        KeyName="ec2-keypair",
+                                        KeyName="ec2-keypair_useast2",
                                         TagSpecifications=[
                                             {
                                                 'ResourceType': "instance",

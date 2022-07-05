@@ -1,0 +1,172 @@
+[root@ip-172-31-7-149 docker_dir]# history 
+    1  id
+    2  clear
+    3  docker version
+    4  clear
+    5  docker ps
+    6  docker ps -a
+    7  docker ps
+    8  docker logs 87947778a16d
+    9  clear
+   10  docker ps
+   11  docker images
+   12  docker run sonakiran
+   13  docker run centos
+   14  docker images
+   15  docker run centos
+   16  docker run centos sh
+   17  docker run centos cat /etc/hosts
+   18  cat /etc/hosts
+   19  docker exec -i -t centos
+   20  docker exec -i -t centos sh
+   21  docker ps
+   22  docker ps -a
+   23  docker create centos
+   24  docker ps -a
+   25  docker ps
+   26  docker start 38ee44449e22
+   27  docker ps
+   28  docker ps -a
+   29  docker exec -i -t 38ee44449e22 sh
+   30  docker run 38ee44449e22 sh
+   31  docker start  38ee44449e22  sh
+   32  docker exec -i -t 38ee44449e22 /bin/bash
+   33  docker run exec -i -t 38ee44449e22 /bin/bash
+   34  docker run exec -i -t centos /bin/bash
+   35  docker exec -i -t centos /bin/bash
+   36  clear
+   37  docker ps
+   38  docker ps -a
+   39  docker start 87947778a16d
+   40  docker ps
+   41  docker ps -a
+   42  docker start 87947778a16d
+   43  docker ps
+   44  docker ps -a
+   45  docker start 87947778a16d
+   46  docker ps
+   47  docker ps -a
+   48  docker start 87947778a16d
+   49  docker ps
+   50  which python
+   51  docker ps 
+   52  docker -exec 87947778a16d python --version
+   53  pwd 
+   54  docker exec 87947778a16d python --version
+   55  docker exec 87947778a16d
+   56  docker exec -it 87947778a16d /bin/bash
+   57  which docker
+   58  cd /usr/bin
+   59  ll
+   60  ls -la docker
+   61  cat docker
+   62  clear
+   63  id
+   64  exit
+   65  docker ps
+   66  docker stop 87947778a16d
+   67  docker ps
+   68  docker ps -a
+   69  docker images
+   70  docker create d15e256757e0
+   71  docker ps
+   72  docker images
+   73  docker start d15e256757e0
+   74  history 
+   75  history -T
+   76  id
+   77  clear
+   78  docker ps
+   79  history 
+   80  docker images
+   81  docker start d15e256757e0
+   82  docker run --name jenkins_container -i -t  d15e256757e0
+   83  docker ps
+   84  cd /docker_dir/
+   85  ll
+   86  cat Dockerfile 
+   87  docker ps
+   88  docker images
+   89  docker help
+   90  docker delete d15e256757e0
+   91  docker rm d15e256757e0
+   92  docker image help
+   93  docker image rm d15e256757e0
+   94  docker image rm d15e256757e0 -f
+   95  docker images
+   96  cd /docker_dir/
+   97  cat Dockerfile 
+   98  clear
+   99  python --version
+  100  docker ps
+  101  docker ps -a
+  102  docker start 87947778a16d
+  103  docker exec -it 87947778a16d /bin/bash
+  104  locate Dockerfile
+  105  locate dockerfile
+  106  cat /var/lib/docker/volumes/jenkins_home/_data/plugins/ace-editor/packs/ace-editor-119/mode-dockerfile.js
+  107  more /var/lib/docker/volumes/jenkins_home/_data/plugins/ace-editor/packs/ace-editor-119/mode-dockerfile.js
+  108  locate dockerfile
+  109  cat /usr/share/vim/vim82/syntax/dockerfile.vim
+  110  cd /docker_dir/
+  111  ll
+  112  cat Dockerfile 
+  113  vim Dockerfile 
+  114  docker ps -a
+  115  docker images
+  116  clear
+  117  docker build -t jenkins_custom .
+  118  docker images
+  119  docker images help
+  120  docker help
+  121  clear
+  122  docker image help
+  123  docker image build help
+  124  docker images
+  125  docker run --name jenkins_with_python -p 8080:8080 -d b4db0591f49e
+  126  docker ps
+  127  docker ps -a
+  128  docker ps
+  129  docker stop 87947778a16d
+  130  docker run --name jenkins_with_python -p 8081:8080 -d b4db0591f49e
+  131  docker ps
+  132  docker ps -a
+  133  docker rm 0a626865e4f1
+  134  docker ps -a
+  135  docker run --name jenkins_with_python -p 8081:8080 -d b4db0591f49e
+  136  cclear
+  137  clear
+  138  docker ps
+  139  docker logs c3f39f2a1d12
+  140  docker ps
+  141  docker exec -it c3f39f2a1d12 /bin/bash
+  142  ifconfig -a
+  143  docker ps
+  144  docker exec -it c3f39f2a1d12 /bin/bash
+  145  docker ps
+  146  clear
+  147  docker ps
+  148  docker exec -it c3f39f2a1d12 /bin/bash
+  149  docker ps
+  150  docker ps -a
+  151  docker update --restart=never 87947778a16d
+  152  docker update --restart=no 87947778a16d
+  153  docker update --restart=always c3f39f2a1d12
+  154  docker ps
+  155  clear
+  156  docker ps -a
+  157  docker start c3f39f2a1d12
+  158  docker ps
+  159  docker ps
+  160  docker ps -a
+  161  docker stop 3.237.194.154
+  162  docker stop 87947778a16d
+  163  docker update help
+  164  docker ps -a
+  165  docker ps
+  166  docker exec -it c3f39f2a1d12 /bin/bash
+  167  cd /docker_dir/
+  168  ll
+  169  cat Dockerfile 
+  170  history 
+[root@ip-172-31-7-149 docker_dir]# 
