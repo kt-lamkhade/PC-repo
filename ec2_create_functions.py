@@ -2,17 +2,16 @@
 import boto3
 import sys
 import time
-from config import *
 #NAME = input("Please provide server name: ")
 #INSTANCE_TYPE = input("Please provide instance type. e.g: t2.micro : ")
-NAME = sys.argv[0]
-INSTANCE_TYPE = sys.argv[1]
-AWS_REGION_NAME = sys.argv[2]
-#AWS_ACCESS_KEY_ID = config.AWS_ACCESS_KEY_ID
-#AWS_ACCESS_KEY_ID = config.AWS_SECRET_ACCESS_KEY
-ec2 = boto3.resource("ec2", region_name=AWS_REGION_NAME, aws_access_key_id=AWS_ACCESS_KEY_ID, aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
-ec2_client = boto3.client("ec2", region_name=AWS_REGION_NAME, aws_access_key_id=AWS_ACCESS_KEY_ID, aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
-s3_client = boto3.client("s3", region_name=AWS_REGION_NAME, aws_access_key_id=AWS_ACCESS_KEY_ID, aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+print("Instance Created: ", sys.argv)
+NAME = sys.argv[1]
+INSTANCE_TYPE = sys.argv[2]
+AWS_REGION_NAME = sys.argv[3]
+print(NAME," ", INSTANCE_TYPE," ", AWS_REGION_NAME)
+"""ec2 = boto3.resource("ec2", region_name=AWS_REGION_NAME)
+ec2_client = boto3.client("ec2", region_name=AWS_REGION_NAME)
+s3_client = boto3.client("s3", region_name=AWS_REGION_NAME)
 def create_instance():
     
     New_instances = ec2_client.run_instances(
@@ -59,4 +58,4 @@ def details():
     
     bucket_create(bucket_name=New_instances['Instances'][0]['InstanceId'])
 
-details()
+details()"""
