@@ -1,5 +1,8 @@
 pipeline{
   agent any
+  environment{
+  
+  }
   parameters{
     string(name: 'INSTANCE_NAME', defaultValue: '', description: 'Provide the name of instance: ')
     choice(name: 'AWS_REGION', choices: ['us-east-1', 'us-east-2'], description: 'Select Region for deployment: ')
