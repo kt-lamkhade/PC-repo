@@ -2,7 +2,7 @@ pipeline{
   agent any
   environment{ 
     AWS_ACCESS_KEY_ID = credentials('jenkins-test-user')
-    AWS_SECRET_ACCESS_KEY = credentials('aws_secret_access_key')
+    AWS_SECRET_ACCESS_KEY = credentials('jenkins-test-user_key')
   }
   parameters{
     string(name: 'instance_name', defaultValue: '', description: 'Provide the name of instance: ')
