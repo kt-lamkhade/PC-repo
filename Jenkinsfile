@@ -1,7 +1,8 @@
 pipeline{
   agent any
   environment{
-  
+    AWS_ACCESS_KEY_ID=credentials('aws_access_key_id')
+    AWS_SECRET_ACCESS_KEY=credentials('aws_secret_access_key')
   }
   parameters{
     string(name: 'INSTANCE_NAME', defaultValue: '', description: 'Provide the name of instance: ')
