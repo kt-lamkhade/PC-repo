@@ -21,7 +21,7 @@ pipeline{
         expression { params.environment == 'DEV' }
       }
       steps{
-        echo "Deploying to ${params.environment}"
+        echo "Deploying into ${params.environment}"
         withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
         sh """chmod +x ec2_create_functions.py
         python ./ec2_create_functions.py ${instance_name} ${instance_type} ${aws_region}"""
