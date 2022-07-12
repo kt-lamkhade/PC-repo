@@ -4,4 +4,4 @@ bucket=aws_resource.Bucket("kirantechnologytest1")
 response = bucket.create(
     ACL='public-read',
 )
-print("response")
+print(response)
