@@ -4,6 +4,6 @@ bucket=aws_resource.Bucket("kirantechnologytest")
 response = bucket.create(
     ACL='public-read',
     CreateBucketConfiguration={
-        'LocationConstraint':'ap-east-1'
+        'LocationConstraint':'us-east-1'
     },
 )
