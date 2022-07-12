@@ -1,0 +1,13 @@
+pipeline{
+  agent any
+  stages{
+    stage(create S3 bucket){
+      steps{
+        withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+        sh """chmod +x tutorial1.py
+        python ./boto3lab/tutorial1.py"""
+        }
+      }
+  }
+  }
+  }
