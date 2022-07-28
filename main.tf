@@ -18,7 +18,7 @@ resource "aws_resourcegroups_group" "test-rg" {
     {
         "Key": "Name",
         "Values": ["testserver"]
-    }
+    },
     {
         "Key": "Name",
         "Values": ["devserver1"]
