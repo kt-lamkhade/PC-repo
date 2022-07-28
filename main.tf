@@ -1,5 +1,8 @@
-provider "aws"{
-    resource "aws_resourcegroups_group" "test" {
+provider "aws" {
+    region = "us-east-1"
+}
+
+resource "aws_resourcegroups_group" "test-rg" {
         name = "test-group"
         resource_query {
             query = <<JSON
@@ -9,12 +12,19 @@ provider "aws"{
   ],
   "TagFilters": [
     {
-      "Key": "Stage",
-      "Values": ["Test"]
+      "Key": "env",
+      "Values": ["dev"]
+    },
+    {
+        "Key": "Name",
+        "Values": ["testserver"]
+    }
+    {
+        "Key": "Name",
+        "Values": ["devserver1"]
     }
   ]
 }
 JSON
   }
-}
 }
