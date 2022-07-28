@@ -17,11 +17,11 @@ resource "aws_resourcegroups_group" "test-rg" {
     },
     {
         "Key": "Name",
-        "Values": ["testserver"]
+        "Values": ["devserver1"]
     },
     {
         "Key": "Name",
-        "Values": ["devserver1"]
+        "Values": ["testserver"]
     }
   ]
 }
