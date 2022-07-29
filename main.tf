@@ -2,8 +2,8 @@ provider "aws" {
     region = "us-east-1"
 }
 
-resource "aws_resourcegroups_group" "test-rg" {
-        name = "test-group"
+resource "aws_resourcegroups_group" "${var.rgname}" {
+        name = "${var.rgname}"
         resource_query {
             query = <<JSON
 {
@@ -12,12 +12,8 @@ resource "aws_resourcegroups_group" "test-rg" {
   ],
   "TagFilters": [
     {
-      "Key": "env",
-      "Values": ["dev"]
-    },
-    {
-        "Key": "Name",
-        "Values": ["devserver1", "testserver"]
+      "Key": "stagex_Id",
+      "Values": ["${var.stagex_ID}"]
     }
   ]
 }

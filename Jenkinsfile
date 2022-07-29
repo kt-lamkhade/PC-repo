@@ -5,7 +5,7 @@ pipeline {
             steps {
             withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                 sh 'terraform init'
-                sh 'terraform apply --auto-approve'
+                sh 'terraform apply -var-file=\"my.tfvars\" --auto-approve'
         }
             }
         }
