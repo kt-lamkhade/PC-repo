@@ -2,7 +2,7 @@ provider "aws" {
     region = "us-east-1"
 }
 
-resource "aws_resourcegroups_group" "${var.rg_name}" {
+resource "aws_resourcegroups_group" "stages_rg" {
         name = "${var.rg_name}"
         resource_query {
             query = <<JSON
