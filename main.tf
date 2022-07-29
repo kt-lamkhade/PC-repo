@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 variable "rg_name" {
-    type = number
+    type = string
 }
 variable "stagex_id" {
     type = string
