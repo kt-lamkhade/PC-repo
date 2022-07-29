@@ -15,9 +15,7 @@ resource "aws_resourcegroups_group" "stages_rg" {
             query = <<JSON
 {
   "ResourceTypeFilters": [
-    "AWS::EC2::Instance"
-  ],
-  [
+    "AWS::EC2::Instance",
     "AWS::EC2::Volume"
   ],
   "TagFilters": [
