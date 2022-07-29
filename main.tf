@@ -16,7 +16,8 @@ resource "aws_resourcegroups_group" "stages_rg" {
 {
   "ResourceTypeFilters": [
     "AWS::EC2::Instance",
-    "AWS::EC2::Volume"
+    "AWS::EC2::Volume",
+    "AWS::EC2::SecurityGroup"
   ],
   "TagFilters": [
     {
