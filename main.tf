@@ -2,6 +2,13 @@ provider "aws" {
     region = "us-east-1"
 }
 
+variable "rg_name" {
+    type = number
+}
+variable "stagex_id" {
+    type = string
+}
+
 resource "aws_resourcegroups_group" "stages_rg" {
         name = "${var.rg_name}"
         resource_query {
