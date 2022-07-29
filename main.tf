@@ -17,6 +17,9 @@ resource "aws_resourcegroups_group" "stages_rg" {
   "ResourceTypeFilters": [
     "AWS::EC2::Instance"
   ],
+  [
+    "AWS::EC2::Volume"
+  ],
   "TagFilters": [
     {
       "Key": "stagex_Id",
