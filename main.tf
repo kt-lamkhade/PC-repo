@@ -1,31 +1,14 @@
 provider "aws" {
-    region = "us-east-1"
+  region = "us-east-1"
 }
 
 variable "rg_name" {
-    type = string
+  type = string
 }
 variable "stagex_id" {
-    type = string
+  type = string
 }
 
-resource "aws_resourcegroups_group" "stages_rg" {
-        name = "${var.rg_name}"
-        resource_query {
-            query = <<JSON
-{
-  "ResourceTypeFilters": [
-    "AWS::EC2::Instance",
-    "AWS::EC2::Volume",
-    "AWS::EC2::SecurityGroup"
-  ],
-  "TagFilters": [
-    {
-      "Key": "stagex_Id",
-      "Values": ["${var.stagex_id}"]
-    }
-  ]
-}
-JSON
-  }
+module "aws_resourcegroups_group" {
+  source = "./modules/"
 }
