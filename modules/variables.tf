@@ -4,6 +4,3 @@ variable "rg_name" {
 variable "stagex_id" {
   type = string
 }
-
-variable "rg_query" {
-}
