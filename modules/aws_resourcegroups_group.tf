@@ -2,8 +2,16 @@
 resource "aws_resourcegroups_group" "stages_rg" {
   name = var.rg_name
   resource_query {
-    dir("${WORKSPACE}/modules/") {
-    query = readJSON file: 'query.json'
-    }
+    query = [
+      {
+        "ResourceTypeFilters" : ["AWS::EC2::Instance", "AWS::EC2::Volume", "AWS::EC2::SecurityGroup"],
+        "TagFilters" : [
+          {
+            "Key" : "stagex_Id",
+            "Values" : ["${var.stagex_id}"]
+          }
+        ]
+      }
+    ]
   }
 }

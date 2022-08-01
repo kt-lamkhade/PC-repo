@@ -1,1 +1,1 @@
-stagex_id = "new_rhel11"
+stagex_id = "new_rhel111"
