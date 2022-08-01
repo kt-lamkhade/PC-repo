@@ -1,2 +1,2 @@
-stagex_id="new_rhel"
-rg_name="stagex_rg"
+stagex_id = "new_rhel"
+rg_name   = "stagex_rg"
