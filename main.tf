@@ -12,5 +12,5 @@ variable "stagex_id" {
 module "aws_resourcegroups_group" {
   source    = "./modules/"
   stagex_id = var.stagex_id
-  rg_name   = format("%s_RG", rg_name)
+  rg_name   = format("%s_RG", var.rg_name)
 }
