@@ -2,7 +2,7 @@
 resource "aws_resourcegroups_group" "stages_rg" {
   name = var.rg_name
   resource_query {
-    query = [
+    query = <<JSON
       {
         "ResourceTypeFilters" : ["AWS::EC2::Instance", "AWS::EC2::Volume", "AWS::EC2::SecurityGroup"],
         "TagFilters" : [
@@ -12,6 +12,6 @@ resource "aws_resourcegroups_group" "stages_rg" {
           }
         ]
       }
-    ]
+    JSON
   }
 }
