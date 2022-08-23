@@ -1,3 +1,9 @@
+def cleanUp()
+{
+    echo "Clean up the Workspace"
+    sh "rm -rf ./*"
+}
+
 pipeline {
     agent any
     options {
@@ -15,4 +21,9 @@ pipeline {
             }
         }
         }
+    post {
+        always {
+            cleanUp()
+        }
+    }
 }
