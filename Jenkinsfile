@@ -2,7 +2,6 @@ pipeline {
     agent any
     options {
         checkoutToSubdirectory('config-repo')
-        ansiColor('xterm')
     }    
     stages {
         stage('build') {
