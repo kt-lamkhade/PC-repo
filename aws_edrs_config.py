@@ -80,7 +80,7 @@ def get_session(role_arn, region, session_name):
         session_name    (str)   :   A name for the session
     """
     try:
-        session = boto3.session.Session(profile_name=profile)
+        session = boto3.session.Session()
         
 
         stsClient = session.client("sts")
