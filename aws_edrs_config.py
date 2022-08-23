@@ -11,7 +11,6 @@ import os
 import sys
 import logging
 
-import fire
 import boto3
 from botocore.exceptions import ClientError
 
@@ -116,15 +115,4 @@ if __name__ == '__main__':
         role_arn=assume_role_arn,
         region=config.get('region'),
         session_name='aws-drs-session'
-    )
-
-    logging.info(f"Call {arguments[1]} action")
-    fire.Fire(
-        {
-            'init': init_edr_service,
-            'create': create_replication_template,
-            'update': update_replication_config,
-            'delete': delete_replication_config,
-            'test': test_module
-        }
     )
