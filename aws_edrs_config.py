@@ -39,6 +39,8 @@ def init_edr_service():
 
 
 def create_replication_template():
+
+    init_edr_service()
     """
     Create a Replication Template which will be used for instance
     replcation from source to DR region
@@ -70,49 +72,5 @@ def create_replication_template():
     logger.info(response)
 
 
-def get_session(profile, role_arn, region, session_name):
-    """
-    Function assumes a role and creates a session for SDK operations
-    Args:
-        profile         (str)   :   AWS Profile to be used
-        role_arn        (str)   :   Assume Role's ARN
-        region          (str)   :   Region in whcih session is required
-        session_name    (str)   :   A name for the session
-    """
-    try:
-        session = boto3.session.Session(profile_name=profile)
-        
+create_replication_template()
 
-        stsClient = session.client("sts")
-        assumed_role = stsClient.assume_role(
-            RoleArn=role_arn,
-            RoleSessionName=session_name
-        )
-    except NameError as err:
-        logger.error(err)
-        sys.exit(1)
-    except ClientError as err:
-        logger.error(err)
-        sys.exit(1)
-    
-    session = boto3.session.Session(
-        aws_access_key_id=assumed_role["Credentials"]["AccessKeyId"],
-        aws_secret_access_key=assumed_role["Credentials"]["SecretAccessKey"],
-        aws_session_token=assumed_role["Credentials"]["SessionToken"],
-        region_name=region
-    )
-    return session
-
-
-if __name__ == '__main__':
-    logger.info("Reading input file")
-    with open('sample_input.json') as input_file:
-        config = json.load(input_file)    
-    assume_role_arn = config.get('assumeRoleArn')
-    logger.info("Initialize boto3 session")
-    session = get_session(
-        profile='itmp-tudeploy',
-        role_arn=assume_role_arn,
-        region=config.get('region'),
-        session_name='aws-drs-session'
-    )
