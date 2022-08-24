@@ -54,8 +54,8 @@ pipeline {
                     }
                 }
             }
-        }
         }*/
+        }
     post {
         always {
             cleanUp()
