@@ -49,7 +49,7 @@ pipeline {
         stage('Create Replication Configuration Template') {
             steps {
                 script {
-                    dir('config-repo/scripts') {
+                    dir('config-repo') {
                         sh "python3 aws_edrs_config.py"
                     }
                 }
