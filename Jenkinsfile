@@ -20,18 +20,17 @@ pipeline {
              AWS_CREDENTIALS = credentials('aws_credentials')
             }
             steps {
-                sh "echo ${env.AWS_CREDENTIALS_USR}"
-                sh "echo ${env.AWS_CREDENTIALS_PSW}"
-                /*sh "echo \"[itmp-tudeploy]\" > ${env.AWS_SHARED_CREDENTIALS_FILE}"
-                sh "echo aws_access_key_id=${env.AWS_CREDENTIALS_USR} >> ${env.AWS_SHARED_CREDENTIALS_FILE}"
-                sh "echo aws_secret_access_key=${env.AWS_CREDENTIALS_PSW} >> ${env.AWS_SHARED_CREDENTIALS_FILE}"*/
+              sh "echo \"[itmp-tudeploy]\" > ${env.AWS_SHARED_CREDENTIALS_FILE}"
+              sh "cho awes_access_key_id=${env.AWS_CREDENTIALS_USR} >> ${env.AWS_SHARED_CREDENTIALS_FILE}"
+              sh "echo aws_secret_access_key=${env.AWS_CREDENTIALS_PSW} >> ${env.AWS_SHARED_CREDENTIALS_FILE}"
             }
         }      
-        /*stage('build') {
+        stage('EDR service init') {
             steps {             
               dir('config-repo') {
-                sh """chmod +x aws_edrs_config.py
-                python ./aws_edrs_config.py"""
+                sh """chmod +x aws_edrs_init.py
+                python ./aws_edrs_init.py
+                echo EDR service init done"""
               } 
             }
         }
@@ -55,7 +54,7 @@ pipeline {
                     }
                 }
             }
-        }*/
+        }
         }
     post {
         always {
