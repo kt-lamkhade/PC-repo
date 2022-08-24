@@ -17,13 +17,14 @@ pipeline {
     stages {
         stage("Configure AWS Credentials"){
           environment {
-            AWS_ACCESS_KEY_ID     = credentials('aws_access_key_id')
-            AWS_SECRET_ACCESS_KEY = credentials('aws_secret_access_key')
+            accessKeyVariable: 'AWS_ACCESS_KEY_ID'
+            credentialsId: 'kiran-aws-creds'
+            secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
             }
             steps {
                 sh "echo \"[itmp-tudeploy]\" > ${env.AWS_SHARED_CREDENTIALS_FILE}"
-                sh "echo aws_access_key_id=${env.AWS_ACCESS_KEY_ID} >> ${env.AWS_SHARED_CREDENTIALS_FILE}"
-                sh "echo aws_secret_access_key=${env.AWS_SECRET_ACCESS_KEY} >> ${env.AWS_SHARED_CREDENTIALS_FILE}"
+                sh "echo aws_access_key_id=${env.accessKeyVariable} >> ${env.AWS_SHARED_CREDENTIALS_FILE}"
+                sh "echo aws_secret_access_key=${env.secretKeyVariable} >> ${env.AWS_SHARED_CREDENTIALS_FILE}"
             }
         }      
         stage('build') {
