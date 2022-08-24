@@ -17,9 +17,9 @@ pipeline {
     stages {
         stage("Configure AWS Credentials"){
           environment {
-            accessKeyVariable: 'AWS_ACCESS_KEY_ID'
-            credentialsId: 'kiran-aws-creds'
-            secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+            accessKeyVariable = 'AWS_ACCESS_KEY_ID'
+            credentialsId = 'kiran-aws-creds'
+            secretKeyVariable = 'AWS_SECRET_ACCESS_KEY'
             }
             steps {
                 sh "echo \"[itmp-tudeploy]\" > ${env.AWS_SHARED_CREDENTIALS_FILE}"
