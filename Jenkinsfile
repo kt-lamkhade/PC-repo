@@ -33,12 +33,12 @@ pipeline {
                 script {
                     dir('config-repo') {
                       sh "echo Initialize EDR Service inside"
-                      sh "python3 aws_edrs_config.py init"
+                      sh "python3 test.py"
                     }
                 }
             }            
         }
-        stage('Create Replication Configuration Template') {
+        /*stage('Create Replication Configuration Template') {
             steps {
                 script {
                     dir('config-repo') {
@@ -47,7 +47,7 @@ pipeline {
                     }
                 }
             }
-        }
+        }*/
         }
     post {
         always {

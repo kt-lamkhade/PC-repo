@@ -1,14 +1,20 @@
 import boto3
-role_info = {
-    'RoleArn': 'arn:aws:iam::719446341377:role/aws-service-role/drs.amazonaws.com/AWSServiceRoleForElasticDisasterRecovery',
-    'RoleSessionName': 'AWSServiceRoleForElasticDisasterRecovery'
-}
+ 
+sts_client = boto3.client('sts')
 
-client = boto3.client('sts')
-credentials = client.assume_role(**role_info)
-
-session = boto3.session.Session(
-    aws_access_key_id=credentials['Credentials']['AccessKeyId'],
-    aws_secret_access_key=credentials['Credentials']['SecretAccessKey'],
-    aws_session_token=credentials['Credentials']['SessionToken']
+assumed_role_object=sts_client.assume_role(
+    RoleArn="arn:aws:iam::719446341377:role/AssumeRoleSession1",
+    RoleSessionName="AssumeRoleSession1"
 )
+
+credentials=assumed_role_object['Credentials']
+
+s3_resource=boto3.resource(
+    's3',
+    aws_access_key_id=credentials['AccessKeyId'],
+    aws_secret_access_key=credentials['SecretAccessKey'],
+    aws_session_token=credentials['SessionToken'],
+)
+
+for bucket in s3_resource.buckets.all():
+    print(bucket.name)
