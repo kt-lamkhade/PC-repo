@@ -127,7 +127,7 @@ if __name__ == '__main__':
     assume_role_arn = config.get('assumeRoleArn')
     logger.info("Initialize boto3 session")
     session = get_session(
-        profile='itmp-tudeploy',
+        profile='admin1',
         role_arn=assume_role_arn,
         region=config.get('region'),
         session_name='aws-drs-session'
