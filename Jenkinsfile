@@ -6,9 +6,9 @@ def cleanUp()
 
 pipeline {
     agent any
-    options {
+    /*options {
         checkoutToSubdirectory('config-repo')
-    }
+    }*/
     environment {
         AWS_CONFIG_FILE = "${env.WORKSPACE}/aws-config"
         AWS_SHARED_CREDENTIALS_FILE = "${env.WORKSPACE}/aws-credentials"
@@ -31,7 +31,7 @@ pipeline {
             }*/
             steps {
                 script {
-                    dir('config-repo') {
+                    dir('./') {
                       sh "echo Initialize EDR Service inside"
                       sh "python3 aws_edrs_config.py test"
                     }
