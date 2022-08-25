@@ -1,7 +1,8 @@
 import boto3
 
 session = boto3.session.Session()
-print(session)
+s3_client = session.client('s3')
+print(s3_client)
 
 """
 sts_client = boto3.client('sts')
