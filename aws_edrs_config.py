@@ -94,10 +94,13 @@ def get_session(profile, role_arn, region, session_name):
         region          (str)   :   Region in whcih session is required
         session_name    (str)   :   A name for the session
     """
-    try:
+    """try:"""
         session = boto3.Session(profile_name="admin1")
-        logger.info("get session: - ", session)
+        s3_client = session.resource('s3')
+        for each_bu in s3_client.buckets.all():
+            print(each_bu.name)
 
+"""
         sts_client = session.client('sts')
         logger.info("stsClient: - ", sts_client)
 
@@ -119,7 +122,7 @@ def get_session(profile, role_arn, region, session_name):
         region_name=region
     )
     return session
-
+"""
 
 if __name__ == '__main__':
     logger.info("Reading input file")
