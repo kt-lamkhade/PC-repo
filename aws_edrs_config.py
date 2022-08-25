@@ -80,14 +80,16 @@ def get_session(profile, role_arn, region, session_name):
         session_name    (str)   :   A name for the session
     """
     try:
-        logger.info("get session 1 ", role_arn, region, session_name, )
+        logger.info("get session 1 ", profile, role_arn, region, session_name, )
         session = boto3.session.Session(profile_name=profile)
         stsClient = session.client("sts")
         assumed_role = stsClient.assume_role(
             RoleArn=role_arn,
             RoleSessionName=session_name
         )
-        
+        logger.info("get session: - ", session)
+        logger.info("stsClient: - ", stsClient)
+        logger.info("assumed_role: - ", assumed_role)
     except NameError as err:
         logger.error(err)
         sys.exit(1)
