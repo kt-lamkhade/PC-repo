@@ -2,7 +2,7 @@ import boto3
 
 session = boto3.session.Session()
 s3_client = session.client('s3')
-for each_bu in s3_client.bucket.all():
+for each_bu in s3_client.buckets.all():
     print(each_bu.name)
 
 """
