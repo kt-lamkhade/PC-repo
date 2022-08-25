@@ -99,7 +99,7 @@ def get_session(profile, role_arn, region, session_name):
         logger.info("get session: - ", session)
 
         sts_client = session.client('sts')
-        logger.info("stsClient: - ", stsClient)
+        logger.info("stsClient: - ", sts_client)
 
         sts_response = sts_client.assume_role(
         RoleArn=role_arn,
