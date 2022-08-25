@@ -68,6 +68,18 @@ def create_replication_template():
 
     logger.info("Created replication template...")
     logger.info(response)
+    
+def test_module():
+    """
+    Temporary function to test random feaures
+    """
+    logger.info("Creating DRS session client")
+    try:
+        client = session.client('drs')
+        logger.info("Completed Client creation")
+    except ClientError as err:
+        logger.error(err)
+        logger.warning("Check if the libraries are installed")
 
 
 def get_session(profile, role_arn, region, session_name):
