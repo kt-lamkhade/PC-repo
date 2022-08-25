@@ -24,37 +24,28 @@ pipeline {
               sh "echo awes_access_key_id=${env.AWS_CREDENTIALS_USR} >> ${env.AWS_SHARED_CREDENTIALS_FILE}"
               sh "echo aws_secret_access_key=${env.AWS_CREDENTIALS_PSW} >> ${env.AWS_SHARED_CREDENTIALS_FILE}"
             }
-        }      
-        stage('EDR service init') {
-            steps {             
-              dir('config-repo') {
-                sh """chmod +x aws_edrs_init.py
-                python ./aws_edrs_init.py
-                echo EDR service init done"""
-              } 
-            }
-        }
+        }     
         stage('Initialize EDR Service') {
             when {
                 expression { return params.INITIALIZE_SERVICE }
             }
             steps {
                 script {
-                    dir('config-repo/scripts') {
-                        sh "python3 aws_edrs_init.py"
+                    dir('config-repo') {
+                        sh "python3 aws_edrs_config.py init"
                     }
                 }
             }            
-        }
+        }/*
         stage('Create Replication Configuration Template') {
             steps {
                 script {
                     dir('config-repo') {
-                        sh "python3 aws_edrs_config.py"
+                      sh "python aws_edrs_config.py"
                     }
                 }
             }
-        }
+        }*/
         }
     post {
         always {

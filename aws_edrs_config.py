@@ -111,7 +111,19 @@ if __name__ == '__main__':
     assume_role_arn = config.get('assumeRoleArn')
     logger.info("Initialize boto3 session")
     session = get_session(
+        profile='itmp-tudeploy',
         role_arn=assume_role_arn,
         region=config.get('region'),
         session_name='aws-drs-session'
+    )
+
+    logging.info(f"Call {arguments[1]} action")
+    fire.Fire(
+        {
+            'init': init_edr_service,
+            'create': create_replication_template,
+            'update': update_replication_config,
+            'delete': delete_replication_config,
+            'test': test_module
+        }
     )
