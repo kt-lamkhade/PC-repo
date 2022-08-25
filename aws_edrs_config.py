@@ -93,24 +93,25 @@ def get_session(profile, role_arn, region, session_name):
         role_arn        (str)   :   Assume Role's ARN
         region          (str)   :   Region in whcih session is required
         session_name    (str)   :   A name for the session
-    
+    """
     try:
         session = boto3.Session(profile_name=profile)
+        logger.info("get session: - ", session)
+
         sts_client = session.client('sts')
+        logger.info("stsClient: - ", stsClient)
+
         sts_response = sts_client.assume_role(
         RoleArn=role_arn,
         RoleSessionName=session_name
         )
-
-        logger.info("get session: - ", session)
-        logger.info("stsClient: - ", stsClient)
-        logger.info("assumed_role: - ", assumed_role)
+        logger.info("sts_response: - ", sts_response)
     except NameError as err:
         logger.error(err)
         sys.exit(1)
     except ClientError as err:
         logger.error(err)
-        sys.exit(1)"""
+        sys.exit(1)
     session = boto3.session.Session(
         aws_access_key_id=sts_response["Credentials"]["AccessKeyId"],
         aws_secret_access_key=sts_response["Credentials"]["SecretAccessKey"],
