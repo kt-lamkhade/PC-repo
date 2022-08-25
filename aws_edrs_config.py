@@ -92,13 +92,13 @@ def get_session(profile, role_arn, region, session_name):
         session_name    (str)   :   A name for the session
     """
     try:
-        logger.info("get session 1 ", profile, role_arn, region, session_name, )
-        session = boto3.session.Session(profile_name=profile)
-        stsClient = session.client("sts")
-        assumed_role = stsClient.assume_role(
-            RoleArn=role_arn,
-            RoleSessionName=session_name
+        session = boto3.Session(profile_name=profile)
+        sts_client = session.client('sts')
+        sts_response = sts_client.assume_role(
+        RoleArn=role_arn,
+        RoleSessionName=session_name
         )
+
         logger.info("get session: - ", session)
         logger.info("stsClient: - ", stsClient)
         logger.info("assumed_role: - ", assumed_role)
@@ -109,9 +109,9 @@ def get_session(profile, role_arn, region, session_name):
         logger.error(err)
         sys.exit(1)
     session = boto3.session.Session(
-        aws_access_key_id=assumed_role["Credentials"]["AccessKeyId"],
-        aws_secret_access_key=assumed_role["Credentials"]["SecretAccessKey"],
-        aws_session_token=assumed_role["Credentials"]["SessionToken"],
+        aws_access_key_id=sts_response["Credentials"]["AccessKeyId"],
+        aws_secret_access_key=sts_response["Credentials"]["SecretAccessKey"],
+        aws_session_token=sts_response["Credentials"]["SessionToken"],
         region_name=region
     )
     return session
