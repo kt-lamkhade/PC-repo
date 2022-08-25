@@ -73,10 +73,10 @@ def test_module():
     """
     Temporary function to test random feaures
     """
-    logger.info("Creating DRS session client")
+    logger.info("Creating S3 session client")
     try:
-        client = session.resource('s3')
-        for each_bu in client.buckets.all():
+        s3_client = session.resource('s3')
+        for each_bu in s3_client.buckets.all():
             print(each_bu.name)
 
         logger.info("Completed Client creation")
@@ -93,7 +93,7 @@ def get_session(profile, role_arn, region, session_name):
         role_arn        (str)   :   Assume Role's ARN
         region          (str)   :   Region in whcih session is required
         session_name    (str)   :   A name for the session
-    """
+    
     try:
         session = boto3.Session(profile_name=profile)
         sts_client = session.client('sts')
@@ -110,7 +110,7 @@ def get_session(profile, role_arn, region, session_name):
         sys.exit(1)
     except ClientError as err:
         logger.error(err)
-        sys.exit(1)
+        sys.exit(1)"""
     session = boto3.session.Session(
         aws_access_key_id=sts_response["Credentials"]["AccessKeyId"],
         aws_secret_access_key=sts_response["Credentials"]["SecretAccessKey"],
