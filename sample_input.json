@@ -1,6 +1,6 @@
 {
     "region": "us-east-1",
-    "assumeRoleArn": "arn:aws:iam::719446341377:role/aws-service-role/drs.amazonaws.com/AWSServiceRoleForElasticDisasterRecovery",
+    "assumeRoleArn": "arn:aws:iam::719446341377:user/admin1",
     "stageId": "stage-x-001",
     "replicationServerSGIds": [
         "SGID"
