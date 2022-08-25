@@ -26,19 +26,19 @@ pipeline {
             }
         }     
         stage('Initialize EDR Service') {
-            /*when {
+            when {
                 expression { return params.INITIALIZE_SERVICE }
-            }*/
+            }
             steps {
                 script {
                     dir('./') {
                       sh "echo Initialize EDR Service inside"
-                      sh "python3 aws_edrs_config.py test"
+                      sh "python3 test.py"
                     }
                 }
             }            
-        }
-        /*stage('Create Replication Configuration Template') {
+        }/*
+        stage('Create Replication Configuration Template') {
             steps {
                 script {
                     dir('config-repo') {
