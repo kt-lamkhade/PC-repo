@@ -1,6 +1,6 @@
 import boto3
 
-session = boto3.session.Session()
+session = boto3.session.Session(profile=admin1)
 s3_client = session.resource('s3')
 for each_bu in s3_client.buckets.all():
     print(each_bu.name)
