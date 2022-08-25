@@ -75,7 +75,10 @@ def test_module():
     """
     logger.info("Creating DRS session client")
     try:
-        client = session.client('drs')
+        client = session.resource('s3')
+        for each_bu in client.buckets.all():
+            print(each_bu.name)
+
         logger.info("Completed Client creation")
     except ClientError as err:
         logger.error(err)
@@ -124,7 +127,7 @@ if __name__ == '__main__':
     assume_role_arn = config.get('assumeRoleArn')
     logger.info("Initialize boto3 session")
     session = get_session(
-        profile='edr-test',
+        profile='admin1',
         role_arn=assume_role_arn,
         region=config.get('region'),
         session_name='aws-drs-session'
