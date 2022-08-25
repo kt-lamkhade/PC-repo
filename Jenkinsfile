@@ -42,7 +42,7 @@ pipeline {
             steps {
                 script {
                     dir('config-repo') {
-                      sh "Create Replication Configuration Template"
+                      sh "echo Create Replication Configuration Template"
                       sh "python aws_edrs_config.py"
                     }
                 }
