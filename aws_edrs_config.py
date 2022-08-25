@@ -86,7 +86,7 @@ def test_module():
 
 
 def get_session(profile, role_arn, region, session_name):
-    session = boto3.Session(profile_name="admin1")
+    session = boto3.Session(profile_name=profile)
     s3_client = session.resource('s3')
     for each_bu in s3_client.buckets.all():
         print(each_bu.name)
@@ -132,7 +132,7 @@ if __name__ == '__main__':
     assume_role_arn = config.get('assumeRoleArn')
     logger.info("Initialize boto3 session")
     session = get_session(
-        profile='admin1',
+        profile='aws_credentials',
         role_arn=assume_role_arn,
         region=config.get('region'),
         session_name='aws-drs-session'
