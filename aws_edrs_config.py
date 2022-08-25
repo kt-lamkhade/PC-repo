@@ -86,6 +86,10 @@ def test_module():
 
 
 def get_session(profile, role_arn, region, session_name):
+    session = boto3.Session(profile_name="admin1")
+    s3_client = session.resource('s3')
+    for each_bu in s3_client.buckets.all():
+        print(each_bu.name)
     """
     Function assumes a role and creates a session for SDK operations
     Args:
@@ -95,10 +99,7 @@ def get_session(profile, role_arn, region, session_name):
         session_name    (str)   :   A name for the session
     """
     """try:"""
-        session = boto3.Session(profile_name="admin1")
-        s3_client = session.resource('s3')
-        for each_bu in s3_client.buckets.all():
-            print(each_bu.name)
+
 
 """
         sts_client = session.client('sts')
