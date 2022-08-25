@@ -80,9 +80,10 @@ def get_session(profile, role_arn, region, session_name):
         session_name    (str)   :   A name for the session
     """
     try:
+        logger.info("get session 1 ")
         session = boto3.session.Session()
         
-
+        logger.info("get session 2 ")
         stsClient = session.client("sts")
         assumed_role = stsClient.assume_role(
             RoleArn=role_arn,
@@ -94,7 +95,7 @@ def get_session(profile, role_arn, region, session_name):
     except ClientError as err:
         logger.error(err)
         sys.exit(1)
-    
+    logger.info("get session 3 ")
     session = boto3.session.Session(
         aws_access_key_id=assumed_role["Credentials"]["AccessKeyId"],
         aws_secret_access_key=assumed_role["Credentials"]["SecretAccessKey"],
