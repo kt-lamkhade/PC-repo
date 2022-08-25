@@ -1,6 +1,6 @@
 import boto3
 
-session = boto3.session.Session(profile_name="admin1")
+session = boto3.session.Session(profile_name="aws_credentials")
 s3_client = session.resource('s3')
 for each_bu in s3_client.buckets.all():
     print(each_bu.name)
