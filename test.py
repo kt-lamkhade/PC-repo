@@ -1,5 +1,9 @@
 import boto3
- 
+
+session = boto3.session.Session()
+print(session)
+
+"""
 sts_client = boto3.client('sts')
 
 assumed_role_object=sts_client.assume_role(
@@ -18,3 +22,4 @@ s3_resource=boto3.resource(
 
 for bucket in s3_resource.buckets.all():
     print(bucket.name)
+    """
