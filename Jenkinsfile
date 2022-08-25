@@ -10,8 +10,8 @@ pipeline {
         checkoutToSubdirectory('config-repo')
     }
     environment {
-        AWS_CONFIG_FILE = "${env.WORKSPACE}/aws-config"
-        AWS_SHARED_CREDENTIALS_FILE = "${env.WORKSPACE}/aws-credentials"
+        AWS_CONFIG_FILE = "${env.WORKSPACE}/config-repo/aws-config/"
+        AWS_SHARED_CREDENTIALS_FILE = "${env.WORKSPACE}/config-repo/aws-credentials"
         AWS_SDK_LOAD_CONFIG = 'true'
     } 
     stages {
