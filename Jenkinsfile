@@ -43,15 +43,15 @@ pipeline {
                 script {
                     dir('config-repo') {
                       sh "echo Create Replication Configuration Template"
-                      sh "python aws_edrs_config.py"
+                      sh "python aws_edrs_config.py create"
                     }
                 }
             }
         }
         }
-    /*post {
+    post {
         always {
             cleanUp()
         }
-    }*/
+    }
 }
