@@ -70,7 +70,7 @@ def create_replication_template():
     logger.info(response)
 
 
-def get_session(role_arn, region, session_name):
+def get_session(profile, role_arn, region, session_name):
     """
     Function assumes a role and creates a session for SDK operations
     Args:
@@ -111,7 +111,7 @@ if __name__ == '__main__':
     assume_role_arn = config.get('assumeRoleArn')
     logger.info("Initialize boto3 session")
     session = get_session(
-        profile='itmp-tudeploy',
+        profile='edr-test',
         role_arn=assume_role_arn,
         region=config.get('region'),
         session_name='aws-drs-session'
