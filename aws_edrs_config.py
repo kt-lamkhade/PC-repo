@@ -95,7 +95,7 @@ def get_session(profile, role_arn, region, session_name):
         session_name    (str)   :   A name for the session
     """
     try:
-        session = boto3.Session(profile_name=profile)
+        session = boto3.Session(profile_name=profile, region_name=region)
         logger.info("get session: - ", session)
 
         sts_client = session.client('sts')
