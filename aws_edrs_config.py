@@ -81,7 +81,7 @@ def create_replication_template():
             'enabled': True,
             'interval': 1,
             'retentionDuration': 7,
-            'ruleID': 3,
+            'ruleID': 1,
             'units': 'DAY'
         },
     ],
