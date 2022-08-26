@@ -33,7 +33,7 @@ arguments = sys.argv
 def init_edr_service():
     """
     Initialize the DR Service for an account for first time
-    """  
+    """
     client = session_call.client('drs')
     init_response = client.initialize_service()
     logger.info("######## init_response",init_response)
@@ -137,6 +137,9 @@ if __name__ == '__main__':
         region='us-east-1',
         session_name='aws-drs-session'
     )
+    session_call.update({
+        'region_name': 'us-east-1',
+    })
 
     logging.info(f"Call {arguments[1]} action")
     fire.Fire(
