@@ -77,11 +77,7 @@ def create_replication_template():
     ebsEncryption='DEFAULT',
     pitPolicy=[
         {
-            "enabled": True,
-            "interval": 1,
-            "retentionDuration": 1,
-            "ruleID": 1,
-            "units": 'DAY'
+            "retentionDuration": 1
         }
     ],
     replicationServerInstanceType='t2.micro',
