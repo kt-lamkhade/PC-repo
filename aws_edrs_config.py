@@ -82,21 +82,7 @@ def create_replication_template():
             "interval": 5,
             "retentionDuration": 60,
             "ruleID": 1,
-            "units": "MINUTE"
-        },
-        {
-            "enabled": True,
-            "interval": 1,
-            "retentionDuration": 24,
-            "ruleID": 2,
-            "units": "HOUR"
-        },
-        {
-            "enabled": True,
-            "interval": 1,
-            "retentionDuration": 7,
-            "ruleID": 3,
-            "units": "DAY"
+            "units": 'MINUTE'
         }
     ],
     replicationServerInstanceType='t2.micro',
