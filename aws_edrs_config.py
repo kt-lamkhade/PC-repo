@@ -35,7 +35,7 @@ def init_edr_service():
     Initialize the DR Service for an account for first time
     """
     logger.info("start##########################")    
-    client = session.client('drs')
+    client = session_call.client('drs')
     init_response = client.initialize_service()
     logger.info(init_response)
     logger.info("End##########################")
@@ -47,7 +47,7 @@ def create_replication_template():
     replcation from source to DR region
     """
     logger.info("Creating replication template......................")
-    client = session.client('drs')
+    client = session_call.client('drs')
     response = client.create_replication_configuration_template(
         associateDefaultSecurityGroup=True,
         bandwidthThrottling=0,
@@ -125,7 +125,6 @@ def get_session(profile, region, session_name):
         aws_session_token=session["Credentials"]["SessionToken"]
     )"""
 
-    logger.info("_____________", "${session}","_____________", "${region}","_____________", "${session_name}")
     return session
 
 
