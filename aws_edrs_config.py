@@ -78,12 +78,26 @@ def create_replication_template():
     #ebsEncryptionKeyArn='string',
     pitPolicy=[
         {
-            'enabled': True,
-            'interval': 1,
-            'retentionDuration': 7,
-            'ruleID': 1,
-            'units': 'DAY'
+            "enabled": true,
+            "interval": 5,
+            "retentionDuration": 60,
+            "ruleID": 1,
+            "units": "MINUTE"
         },
+        {
+            "enabled": true,
+            "interval": 1,
+            "retentionDuration": 24,
+            "ruleID": 2,
+            "units": "HOUR"
+        },
+        {
+            "enabled": true,
+            "interval": 1,
+            "retentionDuration": 7,
+            "ruleID": 3,
+            "units": "DAY"
+        }
     ],
     replicationServerInstanceType='t2.micro',
     replicationServersSecurityGroupsIDs=[
