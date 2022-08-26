@@ -34,7 +34,7 @@ pipeline {
                 script {
                     dir('config-repo') {
                       sh "echo Initialize EDR Service inside"
-                      sh "python3 aws_edrs_config.py test"
+                      sh "python3 test.py"
                     }
                 }
                 }
