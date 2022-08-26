@@ -110,7 +110,6 @@ def test_module():
 def get_session(profile, region, session_name):
     try:
         session = boto3.session.Session(profile_name=profile,region_name=region)
-        stsClient = session.client("sts")
     except NameError as err:
         logger.error(err)
         sys.exit(1)
