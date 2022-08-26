@@ -34,11 +34,11 @@ def init_edr_service():
     """
     Initialize the DR Service for an account for first time
     """
-    logger.info("##########################")    
-    client = boto3.resource('drs')
+    logger.info("start##########################")    
+    client = session.client('drs')
     init_response = client.initialize_service()
     logger.info(init_response)
-    logger.info("##########################")
+    logger.info("End##########################")
 
 
 def create_replication_template():
@@ -47,8 +47,8 @@ def create_replication_template():
     replcation from source to DR region
     """
     logger.info("Creating replication template......................")
-    client_init = boto3.resource('drs')
-    response = client_init.create_replication_configuration_template(
+    client = session.client('drs')
+    response = client.create_replication_configuration_template(
         associateDefaultSecurityGroup=True,
         bandwidthThrottling=0,
         createPublicIP=False,
@@ -69,7 +69,7 @@ def create_replication_template():
         useDedicatedReplicationServer=False
     )
 
-    logger.info("Created replication template................")
+    logger.info("Created replication template............")
     logger.info(response)
 
 def get_replication_config():
@@ -107,21 +107,34 @@ def test_module():
         logger.error(err)
         logger.warning("Check if the libraries are installed")
 
+def get_session(profile, region, session_name):
+    try:
+        session = boto3.session.Session(profile_name=profile)
+        stsClient = session.client("sts")
+    except NameError as err:
+        logger.error(err)
+        sys.exit(1)
+    except ClientError as err:
+        logger.error(err)
+        sys.exit(1)
+    
+    session = boto3.session.Session(
+        aws_access_key_id=stsClient["Credentials"]["AccessKeyId"],
+        aws_secret_access_key=stsClient["Credentials"]["SecretAccessKey"],
+        aws_session_token=stsClient["Credentials"]["SessionToken"],
+
+    )
+    return session
 
 
 
-if __name__ == '__main__':
-    logger.info("Reading input file")
-    with open('sample_input.json') as input_file:
-        config = json.load(input_file)    
-    assume_role_arn = config.get('assumeRoleArn')
+if __name__ == '__main__':  
     logger.info("Initialize boto3 session")
-    """session = get_session(
-        profile='itmp-tudeploy',
-        role_arn=assume_role_arn,
-        region=config.get('region'),
+    session = get_session(
+        profile='aws_credentials',
+        region='us-east-1',
         session_name='aws-drs-session'
-    )"""
+    )
 
     logging.info(f"Call {arguments[1]} action")
     fire.Fire(
