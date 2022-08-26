@@ -24,30 +24,34 @@ pipeline {
               sh "echo awes_access_key_id=${env.AWS_CREDENTIALS_USR} >> ${env.AWS_SHARED_CREDENTIALS_FILE}"
               sh "echo aws_secret_access_key=${env.AWS_CREDENTIALS_PSW} >> ${env.AWS_SHARED_CREDENTIALS_FILE}"
             }
-        }     
+        }    
         stage('Initialize EDR Service') {
             /*when {
                 expression { return params.INITIALIZE_SERVICE }
             }*/
             steps {
+                withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                 script {
                     dir('config-repo') {
                       sh "echo Initialize EDR Service inside"
-                      sh "python3 test.py"
+                      sh "python3 aws_edrs_config.py init"
                     }
+                }
                 }
             }            
-        }/*
+        }
         stage('Create Replication Configuration Template') {
             steps {
+            withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                 script {
-                    dir('config-repo') {
-                      sh "echo Create Replication Configuration Template"
-                      sh "python aws_edrs_config.py test"
-                    }
+                dir('config-repo') {
+                sh "echo Create Replication Configuration Template"
+                sh "python aws_edrs_config.py test"
+                }
                 }
             }
-        }*/
+            }
+        }
         }
     /*post {
         always {
