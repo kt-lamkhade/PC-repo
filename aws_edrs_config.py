@@ -10,6 +10,7 @@ import json
 import os
 import sys
 import logging
+import fire
 
 import boto3
 from botocore.exceptions import ClientError
@@ -33,7 +34,7 @@ def init_edr_service():
     """
     Initialize the DR Service for an account for first time
     """    
-    client = session.client('drs')
+    client = boto3.client('drs')
     init_response = client.initialize_service()
     logger.info(init_response)
 
@@ -44,7 +45,7 @@ def create_replication_template():
     replcation from source to DR region
     """
 
-    client = session.client('drs')
+    client = boto3.client('drs')
     response = client.create_replication_configuration_template(
         associateDefaultSecurityGroup=True,
         bandwidthThrottling=0,
@@ -88,6 +89,17 @@ def test_module():
 
 
 if __name__ == '__main__':
+    logger.info("Reading input file")
+    with open('sample_input.json') as input_file:
+        config = json.load(input_file)    
+    assume_role_arn = config.get('assumeRoleArn')
+    logger.info("Initialize boto3 session")
+    """session = get_session(
+        profile='itmp-tudeploy',
+        role_arn=assume_role_arn,
+        region=config.get('region'),
+        session_name='aws-drs-session'
+    )"""
 
     logging.info(f"Call {arguments[1]} action")
     fire.Fire(
