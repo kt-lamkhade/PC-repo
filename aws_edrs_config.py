@@ -89,6 +89,22 @@ def delete_replication_config():
     Delete and existing replication configuration
     """
     ##PLACE_HOLDER##
+    
+def test_module():
+    """
+    Temporary function to test random feaures
+    """
+    logger.info("Creating S3 session client")
+    try:
+        s3_client = session.resource('s3')
+        for each_bu in s3_client.buckets.all():
+            print(each_bu.name)
+
+        logger.info("Completed Client creation")
+    except ClientError as err:
+        logger.error(err)
+        logger.warning("Check if the libraries are installed")
+
 
 
 
@@ -112,5 +128,6 @@ if __name__ == '__main__':
             'create': create_replication_template,
             'update': update_replication_config,
             'delete': delete_replication_config,
+            'test': test_module
         }
     )
