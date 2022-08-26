@@ -98,7 +98,7 @@ def test_module():
     """
     logger.info("Creating S3 session client")
     try:
-        s3_client = session.resource('s3')
+        s3_client = session_call.resource('s3')
         for each_bu in s3_client.buckets.all():
             print(each_bu.name)
 
@@ -118,19 +118,19 @@ def get_session(profile, region, session_name):
         logger.error(err)
         sys.exit(1)
     
-    session = boto3.session.Session(
-        aws_access_key_id=stsClient["Credentials"]["AccessKeyId"],
-        aws_secret_access_key=stsClient["Credentials"]["SecretAccessKey"],
-        aws_session_token=stsClient["Credentials"]["SessionToken"],
+    session_return = boto3.session.Session(
+        aws_access_key_id=session["Credentials"]["AccessKeyId"],
+        aws_secret_access_key=session["Credentials"]["SecretAccessKey"],
+        aws_session_token=session["Credentials"]["SessionToken"],
 
     )
-    return session
+    return session_return
 
 
 
 if __name__ == '__main__':  
     logger.info("Initialize boto3 session")
-    session = get_session(
+    session_call = get_session(
         profile='aws_credentials',
         region='us-east-1',
         session_name='aws-drs-session'
