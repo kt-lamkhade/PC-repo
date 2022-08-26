@@ -93,10 +93,11 @@ def delete_replication_config():
     ##PLACE_HOLDER##
     
 def test_module():
+    logger.info("Creating S3 session client")
     """
     Temporary function to test random feaures
     """
-    logger.info("Creating S3 session client")
+    
     try:
         s3_client = session_call.resource('s3')
         for each_bu in s3_client.buckets.all():
@@ -124,7 +125,7 @@ def get_session(profile, region, session_name):
         aws_session_token=session["Credentials"]["SessionToken"]
     )"""
 
-    logger.info("_____________", session)
+    logger.info("_____________", "${session}","_____________", "${region}","_____________", "${session_name}")
     return session
 
 
