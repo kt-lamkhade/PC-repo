@@ -130,8 +130,10 @@ def get_session(profile, region, session_name):
 
 
 
-if __name__ == '__main__':  
+if __name__ == '__main__': 
     logger.info("Initialize boto3 session")
+
+    
     session_call = get_session(
         profile='aws_credentials',
         region='us-east-1',
