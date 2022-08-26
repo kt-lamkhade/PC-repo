@@ -109,9 +109,8 @@ def test_module():
 
 def get_session(profile, region, session_name):
     try:
-        session = boto3.session.Session(profile_name=profile)
+        session = boto3.session.Session(profile_name=profile, region_name='us-east-1')
         stsClient = session.client("sts")
-        print("#############stsClient", stsClient)
     except NameError as err:
         logger.error(err)
         sys.exit(1)
@@ -120,9 +119,9 @@ def get_session(profile, region, session_name):
         sys.exit(1)
     """
     session_return = boto3.session.Session(
-        aws_access_key_id=session["Credentials"]["AccessKeyId"],
-        aws_secret_access_key=session["Credentials"]["SecretAccessKey"],
-        aws_session_token=session["Credentials"]["SessionToken"],
+        aws_access_key_id=stsClient["Credentials"]["AccessKeyId"],
+        aws_secret_access_key=stsClient["Credentials"]["SecretAccessKey"],
+        aws_session_token=stsClient["Credentials"]["SessionToken"],
         region_name=region
     )"""
 
