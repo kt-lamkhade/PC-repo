@@ -33,12 +33,11 @@ arguments = sys.argv
 def init_edr_service():
     """
     Initialize the DR Service for an account for first time
-    """
-    logger.info("start##########################")    
+    """  
     client = session_call.client('drs')
     init_response = client.initialize_service()
     logger.info(init_response)
-    logger.info("End##########################")
+ 
 
 
 def create_replication_template():
@@ -110,7 +109,7 @@ def test_module():
 
 def get_session(profile, region, session_name):
     try:
-        session = boto3.session.Session(profile_name=profile)
+        session = boto3.session.Session(profile_name=profile, region_name=region)
         stsClient = session.client("sts")
     except NameError as err:
         logger.error(err)
