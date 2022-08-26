@@ -139,9 +139,6 @@ if __name__ == '__main__':
         region='us-east-1',
         session_name='aws-drs-session'
     )
-    session_call.update({
-        'region_name': 'us-east-1',
-    })
 
     logging.info(f"Call {arguments[1]} action")
     fire.Fire(
