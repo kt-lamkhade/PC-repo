@@ -33,10 +33,12 @@ arguments = sys.argv
 def init_edr_service():
     """
     Initialize the DR Service for an account for first time
-    """    
+    """
+    logger.info("##########################")    
     client = boto3.resource('drs')
     init_response = client.initialize_service()
     logger.info(init_response)
+    logger.info("##########################")
 
 
 def create_replication_template():
@@ -44,7 +46,7 @@ def create_replication_template():
     Create a Replication Template which will be used for instance
     replcation from source to DR region
     """
-
+    logger.info("Creating replication template......................")
     client_init = boto3.resource('drs')
     response = client_init.create_replication_configuration_template(
         associateDefaultSecurityGroup=True,
@@ -67,7 +69,7 @@ def create_replication_template():
         useDedicatedReplicationServer=False
     )
 
-    logger.info("Created replication template...")
+    logger.info("Created replication template................")
     logger.info(response)
 
 def get_replication_config():
