@@ -118,13 +118,13 @@ def get_session(profile, region, session_name):
     except ClientError as err:
         logger.error(err)
         sys.exit(1)
-    
+    """
     session_return = boto3.session.Session(
         aws_access_key_id=session["Credentials"]["AccessKeyId"],
         aws_secret_access_key=session["Credentials"]["SecretAccessKey"],
         aws_session_token=session["Credentials"]["SessionToken"],
         region_name=region
-    )
+    )"""
 
     return session
 
