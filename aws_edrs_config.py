@@ -36,7 +36,7 @@ def init_edr_service():
     """
     client = session_call.client('drs')
     init_response = client.initialize_service()
-    logger.info("######## init_response",init_response)
+    logger.info(init_response, "######## init_response")
  
 
 
@@ -109,7 +109,7 @@ def test_module():
 
 def get_session(profile, region, session_name):
     try:
-        session = boto3.session.Session(profile_name=profile, region_name='us-east-1')
+        session = boto3.session.Session(profile_name=profile, region_name=region)
         stsClient = session.client("sts")
     except NameError as err:
         logger.error(err)
