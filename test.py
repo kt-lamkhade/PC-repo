@@ -4,7 +4,6 @@ import os
 import sys
 import logging
 
-import fire
 from botocore.exceptions import ClientError
 
 from logger import CustomFormatter
