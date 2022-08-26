@@ -79,10 +79,10 @@ def create_replication_template():
     pitPolicy=[
         {
             "enabled": True,
-            "interval": 5,
-            "retentionDuration": 60,
+            "interval": 1,
+            "retentionDuration": 7,
             "ruleID": 1,
-            "units": 'MINUTE'
+            "units": 'DAY'
         }
     ],
     replicationServerInstanceType='t2.micro',
