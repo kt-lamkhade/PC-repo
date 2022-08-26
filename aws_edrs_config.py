@@ -75,7 +75,7 @@ def create_replication_template():
     dataPlaneRouting='PUBLIC_IP',
     defaultLargeStagingDiskType='ST1',
     ebsEncryption='DEFAULT',
-    ebsEncryptionKeyArn='string',
+    #ebsEncryptionKeyArn='string',
     pitPolicy=[
         {
             'enabled': True,
