@@ -133,7 +133,8 @@ def get_session(profile, region, session_name):
 
 if __name__ == '__main__': 
     logger.info("Initialize boto3 session")
-
+    with open('sample_input.json') as input_file:
+        config = json.load(input_file)  
     
     session_call = get_session(
         profile='aws_credentials',
