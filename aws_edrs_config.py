@@ -111,6 +111,7 @@ def get_session(profile, region, session_name):
     try:
         session = boto3.session.Session(profile_name=profile)
         stsClient = session.client("sts")
+        print("#############stsClient", stsClient)
     except NameError as err:
         logger.error(err)
         sys.exit(1)
@@ -125,7 +126,7 @@ def get_session(profile, region, session_name):
         region_name=region
     )
 
-    return session_return
+    return session
 
 
 
