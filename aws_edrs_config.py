@@ -69,22 +69,26 @@ def create_replication_template():
 
     logger.info("Created replication template...")
     logger.info(response)
-    
-def test_module():
-    """
-    Temporary function to test random feaures
-    """
-    logger.info("Creating S3 session client")
-    try:
-        s3_client = session.resource('s3')
-        for each_bu in s3_client.buckets.all():
-            print(each_bu.name)
 
-        logger.info("Completed Client creation")
-    except ClientError as err:
-        logger.error(err)
-        logger.warning("Check if the libraries are installed")
+def get_replication_config():
+    """
+    Get the existing replication configurations
+    """
+    ##PLACE_HOLDER##
 
+
+def update_replication_config():
+    """
+    Update and existing replication config
+    """
+    ##PLACE_HOLDER##
+
+
+def delete_replication_config():
+    """
+    Delete and existing replication configuration
+    """
+    ##PLACE_HOLDER##
 
 
 
@@ -108,6 +112,5 @@ if __name__ == '__main__':
             'create': create_replication_template,
             'update': update_replication_config,
             'delete': delete_replication_config,
-            'test': test_module
         }
     )
