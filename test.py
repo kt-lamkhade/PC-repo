@@ -33,9 +33,9 @@ def assume_infra_role():
     )
 
     session = boto3.session.Session( 
-        'aws_access_key_id': sts_response['Credentials']['AccessKeyId'],
-        'aws_secret_access_key': sts_response['Credentials']['SecretAccessKey'],
-        'aws_session_token': sts_response['Credentials']['SessionToken']
+        aws_access_key_id=sts_response["Credentials"]["AccessKeyId"],
+        aws_secret_access_key=sts_response["Credentials"]["SecretAccessKey"],
+        aws_session_token=sts_response["Credentials"]["SessionToken"],
     )
     return session
 
