@@ -34,7 +34,7 @@ def init_edr_service():
     """
     Initialize the DR Service for an account for first time
     """    
-    client = boto3.client('drs')
+    client = boto3.resource('drs')
     init_response = client.initialize_service()
     logger.info(init_response)
 
@@ -45,8 +45,8 @@ def create_replication_template():
     replcation from source to DR region
     """
 
-    client = boto3.client('drs')
-    response = client.create_replication_configuration_template(
+    client_init = boto3.resource('drs')
+    response = client_init.create_replication_configuration_template(
         associateDefaultSecurityGroup=True,
         bandwidthThrottling=0,
         createPublicIP=False,
