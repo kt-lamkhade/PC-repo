@@ -76,15 +76,6 @@ def create_replication_template():
     defaultLargeStagingDiskType='ST1',
     ebsEncryption='DEFAULT',
     #ebsEncryptionKeyArn='string',
-    pitPolicy=[
-        {
-            "enabled": True,
-            "interval": 1,
-            "retentionDuration": 7,
-            "ruleID": 1,
-            "units": 'DAY'
-        }
-    ],
     replicationServerInstanceType='t2.micro',
     replicationServersSecurityGroupsIDs=[
         'sg-03a18ac09d29c7837',
