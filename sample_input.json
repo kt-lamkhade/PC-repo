@@ -5,7 +5,7 @@
     "replicationServerSGIds": [
         "SGID"
     ],
-    "stagingAreaSubnetId": "subnetID",
+    "stagingAreaSubnetId": "subnet-08ded34787a54cc5e",
     "ebsEncryption": "DEFAULT",
     "ebsEncryptionKeyArn": "string",
     "pitPolicy": [
