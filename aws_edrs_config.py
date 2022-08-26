@@ -54,7 +54,6 @@ def create_replication_template():
         dataPlaneRouting='PRIVATE_IP',
         defaultLargeStagingDiskType='ST1',
         ebsEncryption=config.get('ebsEncryption'),
-        # ebsEncryptionKeyArn=config.get('ebsEncryptionKeyArn'),
         pitPolicy=config.get('pitPolicy'),
         replicationServerInstanceType='t2.micro',
         replicationServersSecurityGroupsIDs=config.get('replicationServerSGIds'),
