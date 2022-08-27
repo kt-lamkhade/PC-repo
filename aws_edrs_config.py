@@ -35,7 +35,7 @@ def init_edr_service():
     Initialize the DR Service for an account for first time
     """
     client = session_call.client('drs')
-    #init_response = client.initialize_service()
+    init_response = client.initialize_service()
     logger.info(client, "######## init_response")
  
 
