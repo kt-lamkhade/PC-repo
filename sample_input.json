@@ -13,21 +13,21 @@
             "enabled": true,
             "interval": 5,
             "retentionDuration": 60,
-            "ruleID": 1,
+            "ruleID": 0,
             "units": "MINUTE"
         },
         {
             "enabled": true,
             "interval": 1,
             "retentionDuration": 24,
-            "ruleID": 2,
+            "ruleID": 1,
             "units": "HOUR"
         },
         {
             "enabled": true,
             "interval": 1,
             "retentionDuration": 7,
-            "ruleID": 3,
+            "ruleID": 2,
             "units": "DAY"
         }
     ]
