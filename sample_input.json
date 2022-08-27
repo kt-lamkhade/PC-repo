@@ -13,7 +13,7 @@
             "enabled": true,
             "interval": 1,
             "retentionDuration": 7,
-            "ruleId": 1,
+            "ruleID": 1,
             "units": "DAY"
         }
     ]
