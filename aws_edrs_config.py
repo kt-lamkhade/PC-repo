@@ -79,7 +79,7 @@ def create_replication_template():
         {
             "retentionDuration": 1,
             "interval": 1,
-            "units": 'DAY'
+            "units": "DAY"
         }
     ],
     replicationServerInstanceType='t2.micro',
