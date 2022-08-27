@@ -77,10 +77,8 @@ def create_replication_template():
     ebsEncryption='DEFAULT',
     pitPolicy=[
         {
-            "enabled": True,
             "interval": 5,
             "retentionDuration": 7,
-            "ruleID": 1,
             "units": "DAY"
         }
     ],
