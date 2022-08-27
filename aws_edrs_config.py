@@ -47,18 +47,26 @@ def create_replication_template():
     """
     logger.info("Creating replication template......................")
     client = session_call.client('drs')
-    """
-    response = client.create_replication_configuration_template(
+    try:
+        response = client.create_replication_configuration_template(
         associateDefaultSecurityGroup=True,
         bandwidthThrottling=0,
         createPublicIP=False,
-        dataPlaneRouting='PRIVATE_IP',
+        dataPlaneRouting='PUBLIC_IP',
         defaultLargeStagingDiskType='ST1',
-        ebsEncryption=config.get('ebsEncryption'),
-        pitPolicy=config.get('pitPolicy'),
+        ebsEncryption='DEFAULT',
+        pitPolicy=[
+            {
+                "interval": 5,
+                "retentionDuration": 7,
+                "units": "DAY"
+            }
+        ],
         replicationServerInstanceType='t2.micro',
-        replicationServersSecurityGroupsIDs=config.get('replicationServerSGIds'),
-        stagingAreaSubnetId=config.get('stagingAreaSubnetId'),
+        replicationServersSecurityGroupsIDs=[
+            'sg-03a18ac09d29c7837',
+        ],
+        stagingAreaSubnetId='subnet-08ded34787a54cc5e',
         stagingAreaTags={
             'Name': 'drs-poc-staging'
         },
@@ -66,36 +74,9 @@ def create_replication_template():
             'Name': 'drs-poc'
         },
         useDedicatedReplicationServer=False
-    )"""
-
-    response = client.create_replication_configuration_template(
-    associateDefaultSecurityGroup=True,
-    bandwidthThrottling=0,
-    createPublicIP=False,
-    dataPlaneRouting='PUBLIC_IP',
-    defaultLargeStagingDiskType='ST1',
-    ebsEncryption='DEFAULT',
-    pitPolicy=[
-        {
-            "interval": 5,
-            "retentionDuration": 7,
-            "units": "DAY"
-        }
-    ],
-    replicationServerInstanceType='t2.micro',
-    replicationServersSecurityGroupsIDs=[
-        'sg-03a18ac09d29c7837',
-    ],
-    stagingAreaSubnetId='subnet-08ded34787a54cc5e',
-    stagingAreaTags={
-        'Name': 'drs-poc-staging'
-    },
-    tags={
-        'Name': 'drs-poc'
-    },
-    useDedicatedReplicationServer=False
-)
-
+        )
+    except ClientError as err:
+        logger.error(err)
     logger.info("Created replication template............")
     logger.info(response)
 
