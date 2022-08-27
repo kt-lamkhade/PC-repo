@@ -36,7 +36,7 @@ def init_edr_service():
     """
     client = session_call.client('drs')
     init_response = client.initialize_service()
-    logger.info(client, "######## init_response")
+    logger.info(init_response, "######## init_response")
  
 
 
