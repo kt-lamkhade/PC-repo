@@ -55,7 +55,6 @@ def create_replication_template():
         dataPlaneRouting='PUBLIC_IP',
         defaultLargeStagingDiskType='ST1',
         ebsEncryption='DEFAULT',
-        pitPolicy=config.get('pitPolicy')
         replicationServerInstanceType='t2.micro',
         replicationServersSecurityGroupsIDs=[
             'sg-03a18ac09d29c7837',
@@ -67,6 +66,7 @@ def create_replication_template():
         tags={
             'Name': 'drs-poc'
         },
+        pitPolicy=config.get('pitPolicy'),
         useDedicatedReplicationServer=False
         )
     except ClientError as err:
