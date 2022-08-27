@@ -92,6 +92,9 @@ def delete_replication_config():
     """
     Delete and existing replication configuration
     """
+    client = session_call.client('drs')
+    responce = client.DeleteReplicationConfigurationTemplate()
+    logger.info(responce)
     ##PLACE_HOLDER##
     
 def test_module():
