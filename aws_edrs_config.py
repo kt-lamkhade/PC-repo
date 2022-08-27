@@ -75,15 +75,7 @@ def create_replication_template():
     dataPlaneRouting='PUBLIC_IP',
     defaultLargeStagingDiskType='ST1',
     ebsEncryption='DEFAULT',
-    pitPolicy=[ 
-      { 
-         "enabled": True,
-         "interval": 1,
-         "retentionDuration": 1,
-         "ruleID": 0,
-         "units": "DAY"
-      }
-   ],
+    pitPolicy=list(config.get('pitPolicy'))
     replicationServerInstanceType='t2.micro',
     replicationServersSecurityGroupsIDs=[
         'sg-03a18ac09d29c7837',
