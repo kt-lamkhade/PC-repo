@@ -17,7 +17,7 @@ pipeline {
     stages {
         stage("Configure AWS Credentials"){
           environment {
-             AWS_CREDENTIALS = credentials('aws_credentials')
+             AWS_CREDENTIALS = credentials('sagar_id')
             }
             steps {
               sh "echo \"[aws_credentials]\" > ${env.AWS_SHARED_CREDENTIALS_FILE}"
@@ -46,7 +46,7 @@ pipeline {
                 script {
                 dir('config-repo') {
                 sh "echo Create Replication Configuration Template"
-                sh "python aws_edrs_config.py delete"
+                sh "python aws_edrs_config.py create"
                 }
                 }
             }
