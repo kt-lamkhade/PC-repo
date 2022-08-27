@@ -55,13 +55,7 @@ def create_replication_template():
         dataPlaneRouting='PUBLIC_IP',
         defaultLargeStagingDiskType='ST1',
         ebsEncryption='DEFAULT',
-        pitPolicy=[
-            {
-                "interval": 5,
-                "retentionDuration": 7,
-                "units": "DAY"
-            }
-        ],
+        pitPolicy=config.get('pitPolicy')
         replicationServerInstanceType='t2.micro',
         replicationServersSecurityGroupsIDs=[
             'sg-03a18ac09d29c7837',
@@ -78,7 +72,7 @@ def create_replication_template():
     except ClientError as err:
         logger.error(err)
     logger.info("Created replication template............")
-    #logger.info(response)
+    logger.info(response)
 
 def get_replication_config():
     """
@@ -128,13 +122,6 @@ def get_session(profile, region, session_name):
     except ClientError as err:
         logger.error(err)
         sys.exit(1)
-    """
-    session_return = boto3.session.Session(
-        aws_access_key_id=stsClient["Credentials"]["AccessKeyId"],
-        aws_secret_access_key=stsClient["Credentials"]["SecretAccessKey"],
-        aws_session_token=stsClient["Credentials"]["SessionToken"],
-        region_name=region
-    )"""
 
     return session
 
