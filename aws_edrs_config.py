@@ -138,7 +138,7 @@ if __name__ == '__main__':
         config = json.load(input_file)  
     
     session_call = get_session(
-        profile='aws_credentials',
+        profile='sagar_id',
         region='us-east-1',
         session_name='aws-drs-session'
     )
