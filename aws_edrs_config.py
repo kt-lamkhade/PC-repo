@@ -78,7 +78,7 @@ def create_replication_template():
     except ClientError as err:
         logger.error(err)
     logger.info("Created replication template............")
-    logger.info(response)
+    #logger.info(response)
 
 def get_replication_config():
     """
