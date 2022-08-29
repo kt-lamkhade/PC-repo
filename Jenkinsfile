@@ -13,14 +13,15 @@ pipeline {
         AWS_CONFIG_FILE = "${env.WORKSPACE}/config"
         AWS_SHARED_CREDENTIALS_FILE = "${env.WORKSPACE}/credentials"
         AWS_SDK_LOAD_CONFIG = 'true'
-    } 
+    }
+    
     stages {
         stage("Configure AWS Credentials"){
           environment {
-             AWS_CREDENTIALS = credentials('aws_credentials')
+             AWS_CREDENTIALS = credentials('sagar_id')
             }
             steps {
-              sh "echo \"[aws_credentials]\" > ${env.AWS_SHARED_CREDENTIALS_FILE}"
+              sh "echo \"[sagar_id]\" > ${env.AWS_SHARED_CREDENTIALS_FILE}"
               sh "echo aws_access_key_id=${env.AWS_CREDENTIALS_USR} >> ${env.AWS_SHARED_CREDENTIALS_FILE}"
               sh "echo aws_secret_access_key=${env.AWS_CREDENTIALS_PSW} >> ${env.AWS_SHARED_CREDENTIALS_FILE}"
             }
