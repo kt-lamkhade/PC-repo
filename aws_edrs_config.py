@@ -49,6 +49,7 @@ def create_replication_template():
     client = session_call.client('drs')
     try:
         response = client.create_replication_configuration_template(
+        replicationConfigurationTemplateID= 'firstdrstempletedev'
         associateDefaultSecurityGroup=True,
         bandwidthThrottling=0,
         createPublicIP=False,
@@ -91,12 +92,12 @@ def update_replication_config():
 def delete_replication_config():
     """
     Delete and existing replication configuration
-    
+    """
     client = session_call.client('drs')
     responce = client.delete_replication_configuration_template(
         replication-configuration-template-id = 1
     )
-    logger.info(responce)"""
+    logger.info(responce)
     ##PLACE_HOLDER##
     
 def test_module():
@@ -138,7 +139,7 @@ if __name__ == '__main__':
         config = json.load(input_file)  
     
     session_call = get_session(
-        profile='sagar_id',
+        profile='aws_credentials',
         region='us-east-1',
         session_name='aws-drs-session'
     )
