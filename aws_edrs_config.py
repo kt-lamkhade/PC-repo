@@ -49,7 +49,7 @@ def create_replication_template():
     client = session_call.client('drs')
     try:
         response = client.create_replication_configuration_template(
-        replicationConfigurationTemplateID= 'firstdrstempletedev',
+        #replicationConfigurationTemplateID= 'firstdrstempletedev',
         associateDefaultSecurityGroup=True,
         bandwidthThrottling=0,
         createPublicIP=False,
