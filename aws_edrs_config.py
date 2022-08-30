@@ -50,15 +50,15 @@ def create_replication_template():
     response = client.create_replication_configuration_template(
         associateDefaultSecurityGroup=True,
         bandwidthThrottling=0,
-        createPublicIP=True,
-        dataPlaneRouting='PUBLIC_IP',
+        createPublicIP=False,
+        dataPlaneRouting='PRIVATE_IP',
         defaultLargeStagingDiskType='ST1',
         ebsEncryption='DEFAULT',
         replicationServerInstanceType='t2.micro',
         replicationServersSecurityGroupsIDs=[
             'sg-03a18ac09d29c7837',
         ],
-        stagingAreaSubnetId='subnet-08ded34787a54cc5e',
+        stagingAreaSubnetId='subnet-03e5cbbed40a53110',
         stagingAreaTags={
             'Name': 'drs-poc-staging'
         },
@@ -75,7 +75,7 @@ def get_replication_config():
     """
     Get the existing replication configurations
     """
-    ##PLACE_HOLDER##
+    ##PLACE_HOLDER#
 
 
 def update_replication_config():
