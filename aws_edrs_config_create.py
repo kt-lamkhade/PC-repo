@@ -10,7 +10,7 @@ import json
 import os
 import sys
 import logging
-import fire
+
 
 import boto3
 from botocore.exceptions import ClientError
@@ -119,7 +119,8 @@ def test_module():
 def get_session(profile, region, session_name):
     try:
         session = boto3.session.Session(
-            profile_name=profile,
+            aws_access_key_id='AKIA2PASX64AUFND63VH',
+            aws_secret_access_key='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',
             region_name=region
             )
     except NameError as err:
@@ -137,12 +138,13 @@ if __name__ == '__main__':
     logger.info("Initialize boto3 session")
     with open('sample_input.json') as input_file:
         config = json.load(input_file)  
-    
     session_call = get_session(
-        profile='sagar_id',
+        profile="sagar",
         region='us-east-1',
         session_name='aws-drs-session'
     )
+    create_replication_template()
+
 
     logging.info(f"Call {arguments[1]} action")
     fire.Fire(
