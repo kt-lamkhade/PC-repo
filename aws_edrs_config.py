@@ -47,9 +47,7 @@ def create_replication_template():
     """
     logger.info("Creating replication template......................")
     client = session_call.client('drs')
-    try:
-        response = client.create_replication_configuration_template(
-        #replicationConfigurationTemplateID= 'firstdrstempletedev',
+    response = client.create_replication_configuration_template(
         associateDefaultSecurityGroup=True,
         bandwidthThrottling=0,
         createPublicIP=True,
@@ -60,7 +58,7 @@ def create_replication_template():
         replicationServersSecurityGroupsIDs=[
             'sg-03a18ac09d29c7837',
         ],
-        stagingAreaSubnetId='arn:aws:ec2:us-east-1:719446341377:subnet/subnet-08ded34787a54cc5e',
+        stagingAreaSubnetId='subnet-08ded34787a54cc5e',
         stagingAreaTags={
             'Name': 'drs-poc-staging'
         },
@@ -70,10 +68,8 @@ def create_replication_template():
         pitPolicy=config.get('pitPolicy'),
         useDedicatedReplicationServer=False
         )
-    except ClientError as err:
-        logger.error(err)
     logger.info("Created replication template............")
-    #logger.info(response)
+    logger.info(response)
 
 def get_replication_config():
     """
