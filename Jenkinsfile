@@ -24,6 +24,7 @@ pipeline {
               sh "echo \"[sagar_id]\" > ${env.AWS_SHARED_CREDENTIALS_FILE}"
               sh "echo aws_access_key_id=${env.AWS_CREDENTIALS_USR} >> ${env.AWS_SHARED_CREDENTIALS_FILE}"
               sh "echo aws_secret_access_key=${env.AWS_CREDENTIALS_PSW} >> ${env.AWS_SHARED_CREDENTIALS_FILE}"
+              sh "echo {subnetId=${params.subnetId}}" >> ${AWS_CONFIG_FILE}
             }
         }    
         stage('Initialize EDR Service') {
@@ -42,12 +43,15 @@ pipeline {
             }            
         }
         stage('Create Replication Configuration Template') {
+            environment{
+                SUBNET_ID = params.subnetId
+            }
             steps {
             withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                 script {
                 dir('config-repo') {
                 sh "echo Create Replication Configuration Template"
-                sh "python aws_edrs_config.py create"
+                sh "python aws_edrs_config.py test"
                 }
                 }
             }
