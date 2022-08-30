@@ -58,7 +58,7 @@ def create_replication_template():
         replicationServersSecurityGroupsIDs=[
             'sg-03a18ac09d29c7837',
         ],
-        stagingAreaSubnetId='subnet-03e5cbbed40a53110',
+        stagingAreaSubnetId='subnet-08ded34787a54cc5e',
         stagingAreaTags={
             'Name': 'drs-poc-staging'
         },
