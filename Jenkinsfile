@@ -43,9 +43,6 @@ pipeline {
             }            
         }
         stage('Create Replication Configuration Template') {
-            environment{
-                SUBNET_ID = params.subnetId
-            }
             steps {
             withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                 script {
