@@ -52,7 +52,7 @@ def create_replication_template():
         #replicationConfigurationTemplateID= 'firstdrstempletedev',
         associateDefaultSecurityGroup=True,
         bandwidthThrottling=0,
-        createPublicIP=False,
+        createPublicIP=True,
         dataPlaneRouting='PUBLIC_IP',
         defaultLargeStagingDiskType='ST1',
         ebsEncryption='DEFAULT',
