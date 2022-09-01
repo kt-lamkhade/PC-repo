@@ -29,15 +29,22 @@ pipeline {
         stage('Parse Prerequisite Parameters'){
             steps {
                 script {
+                    /*def someMap = [
+                        'name' : "john",
+                        'surname' : "doe"
+                        ]
+                        def json = new groovy.json.JsonBuilder()
+                        json "people": someMap
+                        def file = new File("$WORKSPACE/people.json")
+                        file.write(groovy.json.JsonOutput.prettyPrint(json.toString()))*/
                     // Construct the JSON argument to the python function
-                    def payloadMap = [
+                    def myap = [
                         "region": "${env.AWS_REGION}",
                         "replicationServerSGIds": "${env.SG_ID}",
-                        "stagingAreaSubnetId": "${env.SUBNET_ID}",
-                        "customerInput": []
+                        "stagingAreaSubnetId": "${env.SUBNET_ID}"
                     ]
                     // Convert Map to JSON
-                    writeJSON(file: 'config-repo/tmpconfig.json', json: payloadMap)
+                    writeJSON file: 'config-repo/tmpconfig.json', json: myap
                    }
                }
         }   
