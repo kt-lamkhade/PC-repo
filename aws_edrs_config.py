@@ -84,14 +84,14 @@ def update_replication_config():
 def delete_replication_config():
     """
     Delete and existing replication configuration
-    """
+    
     client = session_call.client('drs')
     responce = client.delete_replication_configuration_template(
         
     )
     logger.info(responce)
     ##PLACE_HOLDER##
-    
+    """
 def test_module():
     """logger.info(configVar.get('subneyId'))
     
@@ -131,6 +131,10 @@ if __name__ == '__main__':
         config = json.load(input_file)  
     with open('tmpconfig.json') as input_env_file:
         config_env = json.load(input_env_file)
+    logger.info(config_env.get('region'))
+    logger.info(config_env.get('replicationServerSGIds'))
+    logger.info(config_env.get('stagingAreaSubnetId'))
+    """
     session_call = get_session(
         profile='aws_credentials',
         region=config_env.get('region'),
@@ -147,3 +151,4 @@ if __name__ == '__main__':
             'test': test_module
         }
     )
+    """
