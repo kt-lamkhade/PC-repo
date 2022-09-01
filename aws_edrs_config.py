@@ -52,10 +52,10 @@ def create_replication_template():
         createPublicIP=False,
         dataPlaneRouting='PRIVATE_IP',
         defaultLargeStagingDiskType='ST1',
-        ebsEncryption='DEFAULT',
+        ebsEncryption=config.get('ebsEncryption'),
         replicationServerInstanceType='t2.micro',
-        replicationServersSecurityGroupsIDs=config.get('replicationServerSGIds'),
-        stagingAreaSubnetId=config.get('stagingAreaSubnetId'),
+        replicationServersSecurityGroupsIDs=config_env.get('replicationServerSGIds'),
+        stagingAreaSubnetId=config_env.get('stagingAreaSubnetId'),
         stagingAreaTags={
             'Name': 'drs-poc-staging'
         },
@@ -129,10 +129,11 @@ if __name__ == '__main__':
     logger.info("Initialize boto3 session")
     with open('sample_input.json') as input_file:
         config = json.load(input_file)  
-
+    with open('tmpconfig.json') as input_env_file:
+        config_env = json.load(input_env_file)
     session_call = get_session(
         profile='aws_credentials',
-        region='us-east-1',
+        region=config_env.get('region'),
         session_name='aws-drs-session'
     )
 
