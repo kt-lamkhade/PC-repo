@@ -24,13 +24,20 @@ pipeline {
               sh "echo \"[aws_credentials]\" > ${env.AWS_SHARED_CREDENTIALS_FILE}"
               sh "echo aws_access_key_id=${env.AWS_CREDENTIALS_USR} >> ${env.AWS_SHARED_CREDENTIALS_FILE}"
               sh "echo aws_secret_access_key=${env.AWS_CREDENTIALS_PSW} >> ${env.AWS_SHARED_CREDENTIALS_FILE}"
-              sh "echo \"{\"  > ${env.AWS_CONFIG_FILE}"
-              sh "echo \"'region'\":${env.AWS_REGION}, >> ${env.AWS_CONFIG_FILE}"
-              sh "echo \"'replicationServerSGIds\"'\":\"'\"${env.SG_ID}\"'\", >> ${env.AWS_CONFIG_FILE}"
-              sh "echo \"'stagingAreaSubnetId\"'\":\"'\"${env.SUBNET_ID}\"'\" >> ${env.AWS_CONFIG_FILE}"
-              sh "echo \"}\"  > ${env.AWS_CONFIG_FILE}"
             }
-        }    
+        } 
+        stage('Parse Prerequisite Parameters'){
+            steps{
+                script{
+                    def payloadMap = [
+                        "region": "${env.AWS_REGION}",
+                        "replicationServerSGIds" : "${env.SG_ID}",
+                        "stagingAreaSubnetId" : "${env.SUBNET_ID}"
+                    ]
+                    writeJSON(file: 'config-repo/tmpconfig.json', json: payloadMap)
+                }
+            }
+        }   
         stage('Initialize EDR Service') {
             /*when {
                 expression { return params.INITIALIZE_SERVICE }
