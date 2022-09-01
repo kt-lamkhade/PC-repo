@@ -134,7 +134,7 @@ if __name__ == '__main__':
   
     session_call = get_session(
         profile='aws_credentials',
-        region=config_env.get('region'),
+        region='us-east-1',
         session_name='aws-drs-session'
     )
 
