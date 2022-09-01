@@ -10,7 +10,7 @@ pipeline {
         checkoutToSubdirectory('config-repo')
     }
     environment {
-        AWS_CONFIG_FILE = "${env.WORKSPACE}/tmpconfig.json"
+        AWS_CONFIG_FILE = "${env.WORKSPACE}/config-repo/tmpconfig.json"
         AWS_SHARED_CREDENTIALS_FILE = "${env.WORKSPACE}/credentials"
         AWS_SDK_LOAD_CONFIG = 'true'
     }
