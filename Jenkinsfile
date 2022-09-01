@@ -39,7 +39,6 @@ pipeline {
                         file.write(groovy.json.JsonOutput.prettyPrint(json.toString()))*/
                     // Construct the JSON argument to the python function
                     def myap = [
-                        "region": "${env.AWS_REGION}",
                         "replicationServerSGIds": "${env.SG_ID}",
                         "stagingAreaSubnetId": "${env.SUBNET_ID}"
                     ]
