@@ -28,7 +28,7 @@ pipeline {
               sh "echo region=${env.AWS_REGION}\",\" >> ${env.AWS_CONFIG_FILE}"
               sh "echo replicationServerSGIds=${env.SG_ID}\",\" >> ${env.AWS_CONFIG_FILE}"
               sh "echo stagingAreaSubnetId=${env.SUBNET_ID} >> ${env.AWS_CONFIG_FILE}"
-              sh "echo \"}\"  > ${env.AWS_CONFIG_FILE}"
+              sh "echo \"}\"  >> ${env.AWS_CONFIG_FILE}"
             }
         }    
         stage('Initialize EDR Service') {
