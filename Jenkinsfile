@@ -33,7 +33,7 @@ pipeline {
                     def payloadMap = [
                         "region": "${env.AWS_REGION}",
                         "replicationServerSGIds": "${env.SG_ID}",
-                        "stagingAreaSubnetId": "${env.SUBNET_ID}"
+                        "stagingAreaSubnetId": "${env.SUBNET_ID}",
                         "customerInput": []
                     ]
                     // Convert Map to JSON
