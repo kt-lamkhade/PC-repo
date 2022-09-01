@@ -36,7 +36,7 @@ def init_edr_service():
     """
     client = session_call.client('drs')
     init_response = client.initialize_service()
-    logger.info(init_response, "######## init_response")
+    logger.info(init_response)
  
 
 
@@ -45,7 +45,6 @@ def create_replication_template():
     Create a Replication Template which will be used for instance
     replcation from source to DR region
     """
-    logger.info("Creating replication template......................")
     client = session_call.client('drs')
     response = client.create_replication_configuration_template(
         associateDefaultSecurityGroup=True,
@@ -66,7 +65,6 @@ def create_replication_template():
         pitPolicy=config.get('pitPolicy'),
         useDedicatedReplicationServer=False
         )
-    logger.info("Created replication template............")
     logger.info(response)
 
 def get_replication_config():

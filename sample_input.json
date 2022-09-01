@@ -3,9 +3,9 @@
     "assumeRoleArn": "arn:aws:iam::151830815866:role/itmpa2l-infra-dev-infraadmin-assumerole",
     "stageId": "stage-x-001",
     "replicationServerSGIds": [
-        "SGID"
+        "sg-03a18ac09d29c7837"
     ],
-    "stagingAreaSubnetId": "subnetID",
+    "stagingAreaSubnetId": "subnet-08ded34787a54cc5e",
     "ebsEncryption": "DEFAULT",
     "ebsEncryptionKeyArn": "string",
     "pitPolicy": [

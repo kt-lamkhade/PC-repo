@@ -1,7 +1,5 @@
 {
     "us-east-1": {
-        "drRegion": "us-east-1"
-    },
-    "stagingAreaSubnetId": "subnet-08ded34787a54cc5e",
-    "replicationServerSGIds": "sg-03a18ac09d29c7837"
+    "drRegion": "us-east-1"
+}
 }
