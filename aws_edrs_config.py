@@ -131,9 +131,6 @@ if __name__ == '__main__':
         config = json.load(input_file)  
     with open('tmpconfig.json') as input_env_file:
         config_env = json.load(input_env_file)
-    logger.info(config_env.get('region'))
-    logger.info(config_env.get('replicationServerSGIds'))
-    logger.info(config_env.get('stagingAreaSubnetId'))
   
     session_call = get_session(
         profile='aws_credentials',
