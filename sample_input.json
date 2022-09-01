@@ -1,5 +1,4 @@
 {
-    "region": "us-east-2",
     "assumeRoleArn": "arn:aws:iam::151830815866:role/itmpa2l-infra-dev-infraadmin-assumerole",
     "stageId": "stage-x-001",
     "replicationServerSGIds": [
