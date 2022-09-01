@@ -134,7 +134,7 @@ if __name__ == '__main__':
     logger.info(config_env.get('region'))
     logger.info(config_env.get('replicationServerSGIds'))
     logger.info(config_env.get('stagingAreaSubnetId'))
-    """
+  
     session_call = get_session(
         profile='aws_credentials',
         region=config_env.get('region'),
@@ -151,4 +151,4 @@ if __name__ == '__main__':
             'test': test_module
         }
     )
-    """
+   
