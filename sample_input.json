@@ -11,7 +11,7 @@
     "pitPolicy": [
         {
             "enabled": true,
-            "interval": 9,
+            "interval": 10,
             "retentionDuration": 60,
             "ruleID": 1,
             "units": "MINUTE"
