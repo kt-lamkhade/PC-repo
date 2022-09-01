@@ -10,7 +10,7 @@ pipeline {
         checkoutToSubdirectory('config-repo')
     }
     environment {
-        AWS_CONFIG_FILE = "${env.WORKSPACE}/config"
+        AWS_CONFIG_FILE = "${env.WORKSPACE}/config-repo/tmpconfig.json"
         AWS_SHARED_CREDENTIALS_FILE = "${env.WORKSPACE}/credentials"
         AWS_SDK_LOAD_CONFIG = 'true'
     }
@@ -27,16 +27,19 @@ pipeline {
             }
         } 
         stage('Parse Prerequisite Parameters'){
-            steps{
-                script{
+            steps {
+                script {
+                    // Construct the JSON argument to the python function
                     def payloadMap = [
                         "region": "${env.AWS_REGION}",
-                        "replicationServerSGIds" : "${env.SG_ID}",
-                        "stagingAreaSubnetId" : "${env.SUBNET_ID}"
+                        "replicationServerSGIds": "${env.SG_ID}",
+                        "stagingAreaSubnetId": "${env.SUBNET_ID}"
+                        "customerInput": []
                     ]
+                    // Convert Map to JSON
                     writeJSON(file: 'config-repo/tmpconfig.json', json: payloadMap)
-                }
-            }
+                   }
+               }
         }   
         stage('Initialize EDR Service') {
             /*when {
