@@ -25,9 +25,9 @@ pipeline {
               sh "echo aws_access_key_id=${env.AWS_CREDENTIALS_USR} >> ${env.AWS_SHARED_CREDENTIALS_FILE}"
               sh "echo aws_secret_access_key=${env.AWS_CREDENTIALS_PSW} >> ${env.AWS_SHARED_CREDENTIALS_FILE}"
               sh "echo \"{\"  > ${env.AWS_CONFIG_FILE}"
-              sh "echo \"'\"region\"'\":\"'\"${env.AWS_REGION}\"'\", >> ${env.AWS_CONFIG_FILE}"
-              sh "echo \"'\"replicationServerSGIds\"'\":\"'\"${env.SG_ID}\"'\", >> ${env.AWS_CONFIG_FILE}"
-              sh "echo \"'\"stagingAreaSubnetId\"'\":\"'\"${env.SUBNET_ID}\"'\" >> ${env.AWS_CONFIG_FILE}"
+              sh "echo \"['region\"':'"${env.AWS_REGION}\"'\", >> ${env.AWS_CONFIG_FILE}"
+              sh "echo \"'replicationServerSGIds\"'\":\"'\"${env.SG_ID}\"'\", >> ${env.AWS_CONFIG_FILE}"
+              sh "echo \"'stagingAreaSubnetId\"'\":\"'\"${env.SUBNET_ID}\"'\" >> ${env.AWS_CONFIG_FILE}"
               sh "echo \"}\"  > ${env.AWS_CONFIG_FILE}"
             }
         }    
