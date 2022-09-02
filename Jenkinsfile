@@ -33,7 +33,7 @@ pipeline {
                     def myap = [
                         sg_id = "${env.SG_ID}"
                         "region": "${env.AWS_REGION}",
-                        "replicationServerSGIds": [sg_id.split(',')],
+                        "replicationServerSGIds": "[${sg_id.split(',')}]",
                         "stagingAreaSubnetId": "${env.SUBNET_ID}"
                     ]
                     // Convert Map to JSON
