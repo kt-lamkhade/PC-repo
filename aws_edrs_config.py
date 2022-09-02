@@ -131,8 +131,9 @@ if __name__ == '__main__':
         config = json.load(input_file)  
     with open('tmpfile.json') as input_env_file:
         config_env = json.load(input_env_file)
+    """
     with open('tmpSgIdFile.json') as input_sg_env_file:
-        config_sg_env = json.load(input_sg_env_file)
+        config_sg_env = json.load(input_sg_env_file)"""
     session_call = get_session(
         profile='aws_credentials',
         region=config_env.get('region'),
