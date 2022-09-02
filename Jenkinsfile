@@ -2,7 +2,7 @@ pipeline{
   agent any
   stages {
     
-    stage("create S3 bucket")
+    stage("create S3 bucket"){
       steps{
         script{
         def tmpSgIdFile = [
@@ -16,5 +16,6 @@ pipeline{
         python ./tutorial1.py """
         }
       }
+    }
     }
 }
