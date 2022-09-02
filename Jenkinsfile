@@ -29,14 +29,6 @@ pipeline {
         stage('Parse Prerequisite Parameters'){
             steps {
                 script {
-                    /*def someMap = [
-                        'name' : "john",
-                        'surname' : "doe"
-                        ]
-                        def json = new groovy.json.JsonBuilder()
-                        json "people": someMap
-                        def file = new File("$WORKSPACE/people.json")
-                        file.write(groovy.json.JsonOutput.prettyPrint(json.toString()))*/
                     // Construct the JSON argument to the python function
                     def myap = [
                         "region": "${env.AWS_REGION}",
@@ -81,9 +73,9 @@ pipeline {
             }
         }
         }
-    post {
+    /*post {
         always {
             cleanUp()
         }
-    }
+    }*/
 }
