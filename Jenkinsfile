@@ -31,8 +31,9 @@ pipeline {
                 script {
                     // Construct the JSON argument to the python function
                     def myap = [
+                        sg_id = "${env.SG_ID}"
                         "region": "${env.AWS_REGION}",
-                        "replicationServerSGIds": ["${env.SG_ID}"],
+                        "replicationServerSGIds": [sg_id.split(',')],
                         "stagingAreaSubnetId": "${env.SUBNET_ID}"
                     ]
                     // Convert Map to JSON
