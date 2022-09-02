@@ -8,7 +8,7 @@ pipeline{
         def tmpSgIdFile = [
         "replicationServerSGIds": "${env.SG_ID}"
         ]
-        writeJSON file: 'tmpfile.json', json: tmpSgIdFile
+        writeJSON file: 'tmpfile.json', json: tmpSgIdFile.split(',')
 
         """
         echo "Deploying to ${params.ENVIRONMENT}"
