@@ -3,6 +3,9 @@
     "stageId": "stage-x-001",
     "ebsEncryption": "DEFAULT",
     "ebsEncryptionKeyArn": "string",
+    "replicationServerSGIds": [
+        "sg-03a18ac09d29c7837"
+    ],
     "pitPolicy": [
         {
             "enabled": true,

@@ -54,7 +54,7 @@ def create_replication_template():
         defaultLargeStagingDiskType='ST1',
         ebsEncryption=config.get('ebsEncryption'),
         replicationServerInstanceType='t2.micro',
-        replicationServersSecurityGroupsIDs=list(config_env.get('replicationServerSGIds')),
+        replicationServersSecurityGroupsIDs=config.get('replicationServerSGIds'),
         stagingAreaSubnetId=config_env.get('stagingAreaSubnetId'),
         stagingAreaTags={
             'Name': 'drs-poc-staging'
