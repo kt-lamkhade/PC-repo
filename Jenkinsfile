@@ -5,7 +5,7 @@ pipeline{
     stage("create S3 bucket")
       steps{
         def tmpSgIdFile = [
-        "replicationServerSGIds" = "${env.SG_ID}"
+        "replicationServerSGIds": "${env.SG_ID}"
         ]
         writeJSON file: 'tmpfile.json', json: tmpSgIdFile.split(',')
 
