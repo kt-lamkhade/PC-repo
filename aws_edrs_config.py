@@ -54,7 +54,7 @@ def create_replication_template():
         defaultLargeStagingDiskType='ST1',
         ebsEncryption=config.get('ebsEncryption'),
         replicationServerInstanceType='t2.micro',
-        replicationServersSecurityGroupsIDs=config_env.get('replicationServerSGIds'),
+        replicationServersSecurityGroupsIDs=config_sg.get('replicationServerSGIds'),
         stagingAreaSubnetId=config_env.get('stagingAreaSubnetId'),
         stagingAreaTags={
             'Name': 'drs-poc-staging'
@@ -131,9 +131,8 @@ if __name__ == '__main__':
         config = json.load(input_file)  
     with open('tmpfile.json') as input_env_file:
         config_env = json.load(input_env_file)
-    """
-    with open('tmpSgIdFile.json') as input_sg_env_file:
-        config_sg_env = json.load(input_sg_env_file)"""
+    with open('tmpsgfile.json') as input_sg:
+        config_sg = json.load(input_sg)
     session_call = get_session(
         profile='aws_credentials',
         region=config_env.get('region'),
