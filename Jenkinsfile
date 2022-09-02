@@ -15,3 +15,4 @@ pipeline{
         python ./tutorial1.py """
       }
     }
+}
