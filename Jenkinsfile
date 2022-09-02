@@ -4,6 +4,7 @@ pipeline{
     
     stage("create S3 bucket")
       steps{
+        script{
         def tmpSgIdFile = [
         "replicationServerSGIds": "${env.SG_ID}"
         ]
@@ -13,6 +14,7 @@ pipeline{
         echo "Deploying to ${params.ENVIRONMENT}"
         sh chmod +x tutorial1.py
         python ./tutorial1.py """
+        }
       }
     }
 }
