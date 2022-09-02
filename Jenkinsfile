@@ -45,6 +45,11 @@ pipeline {
                     ]
                     // Convert Map to JSON
                     writeJSON file: 'config-repo/tmpfile.json', json: myap
+
+                    def tmpSgIdFile = [
+                        "replicationServerSGIds": "${env.SG_ID}"
+                    ]
+                    writeJSON file: 'config-repo/tmpfile.json', json: tmpSgIdFile.split(',')
                    }
                }
         }   
