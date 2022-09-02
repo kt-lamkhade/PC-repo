@@ -41,7 +41,7 @@ pipeline {
                     def tmpSgIdFile = [
                         "replicationServerSGIds": "${env.SG_ID}"
                     ]
-                    writeJSON file: 'config-repo/tmpfile.json', json: tmpSgIdFile
+                    writeJSON file: 'config-repo/tmpSGfile.json', json: tmpSgIdFile
                    }
                }
         }   
