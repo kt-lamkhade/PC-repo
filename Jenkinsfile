@@ -40,7 +40,7 @@ pipeline {
                     def tmpSgIdFile = [
                         "replicationServerSGIds": sg_id.split(',')
                         ]
-                    writeJSON file: 'tmpsgfile.json', json: tmpSgIdFile
+                    writeJSON file: 'config-repo/tmpsgfile.json', json: tmpSgIdFile
 
                    }
                }
@@ -73,9 +73,9 @@ pipeline {
             }
         }
         }
-    /*post {
+    post {
         always {
             cleanUp()
         }
-    }*/
+    }
 }
