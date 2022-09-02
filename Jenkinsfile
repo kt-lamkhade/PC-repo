@@ -6,8 +6,9 @@ pipeline{
       steps{
         script{
         
+       sg_id = "${env.SG_ID}"
         def tmpSgIdFile = [
-        "replicationServerSGIds": "${env.SG_ID}"
+        "replicationServerSGIds": sg_id.split(';')
         ]
         writeJSON file: 'tmpfile.json', json: tmpSgIdFile
 
