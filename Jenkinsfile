@@ -31,18 +31,17 @@ pipeline {
                 script {
                     // Construct the JSON argument to the python function
                     def myap = [
-                        sg_id = "${env.SG_ID}"
                         "region": "${env.AWS_REGION}",
-                        "replicationServerSGIds": "[${sg_id.split(',')}]",
                         "stagingAreaSubnetId": "${env.SUBNET_ID}"
                     ]
                     // Convert Map to JSON
                     writeJSON file: 'config-repo/tmpfile.json', json: myap
-
+                    sg_id = "${env.SG_ID}"
                     def tmpSgIdFile = [
-                        "replicationServerSGIds": "${env.SG_ID}"
-                    ]
-                    writeJSON file: 'config-repo/tmpSGfile.json', json: tmpSgIdFile
+                        "replicationServerSGIds": sg_id.split(',')
+                        ]
+                    writeJSON file: 'tmpsgfile.json', json: tmpSgIdFile
+
                    }
                }
         }   
