@@ -129,7 +129,7 @@ if __name__ == '__main__':
     logger.info("Initialize boto3 session")
     with open('sample_input.json') as input_file:
         config = json.load(input_file)  
-    with open('tmpconfig.json') as input_env_file:
+    with open('tmpfile.json') as input_env_file:
         config_env = json.load(input_env_file)
   
     session_call = get_session(

@@ -44,7 +44,7 @@ pipeline {
                         "stagingAreaSubnetId": "${env.SUBNET_ID}"
                     ]
                     // Convert Map to JSON
-                    writeJSON file: 'config-repo/tmpconfig.json', json: myap
+                    writeJSON file: 'config-repo/tmpfile.json', json: myap
                    }
                }
         }   
