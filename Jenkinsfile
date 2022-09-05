@@ -44,7 +44,7 @@ pipeline {
 
                    }
                }
-        } /*  
+        }   
         stage('Initialize EDR Service') {
             when {
                 expression { return params.INITIALIZE_SERVICE }
@@ -59,7 +59,7 @@ pipeline {
                 }
                 }
             }            
-        }*/
+        }
         stage('Create Replication Configuration Template') {
             steps {
             withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
