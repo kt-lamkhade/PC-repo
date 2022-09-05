@@ -114,7 +114,7 @@ def get_session(profile, region, session_name):
         session = boto3.session.Session(profile_name=profile)
         stsClient = session.client("sts")
         assumed_role = stsClient.assume_role(
-            RoleArn="arn:aws:iam::719446341377:policy/drsTemplateCreate",
+            RoleArn="arn:aws:iam::719446341377:role/drsRole",
             RoleSessionName=session_name
         )
     except NameError as err:
