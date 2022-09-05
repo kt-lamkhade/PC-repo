@@ -93,10 +93,11 @@ def delete_replication_config():
     ##PLACE_HOLDER##
     """
 def test_module():
-    """logger.info(configVar.get('subneyId'))
     
+    """
+    logger.info(configVar.get('subneyId'))
     Temporary function to test random feaures
-    
+    """
     
     try:
         s3_client = session_call.resource('s3')
@@ -107,7 +108,7 @@ def test_module():
     except ClientError as err:
         logger.error(err)
         logger.warning("Check if the libraries are installed")
-    """
+    
 def get_session(profile, region, session_name):
     try:
         session = boto3.session.Session(profile_name=profile)

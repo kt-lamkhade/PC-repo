@@ -54,12 +54,12 @@ pipeline {
                 script {
                     dir('config-repo') {
                       sh "echo Initialize EDR Service inside"
-                      sh "python3 aws_edrs_config.py init"
+                      sh "python3 aws_edrs_config.py test"
                     }
                 }
                 }
             }            
-        }
+        }/*
         stage('Create Replication Configuration Template') {
             steps {
             withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
@@ -71,7 +71,7 @@ pipeline {
                 }
             }
             }
-        }
+        }*/
         }
     post {
         always {
