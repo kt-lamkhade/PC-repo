@@ -110,12 +110,10 @@ def test_module():
     """
 def get_session(profile, region, session_name):
     try:
-        session = boto3.session.Session(profile_name=profile)
-        stsClient = session.client("sts")
-        assumed_role = stsClient.assume_role(
-            RoleArn="arn:aws:iam::719446341377:role/my_sts",
-            RoleSessionName=session_name
-        )
+        session = boto3.session.Session(
+            profile_name=profile,
+            region_name=region
+            )
     except NameError as err:
         logger.error(err)
         sys.exit(1)
@@ -123,14 +121,7 @@ def get_session(profile, region, session_name):
         logger.error(err)
         sys.exit(1)
 
-    access_keys = boto3.session.Session(
-        aws_access_key_id=assumed_role["Credentials"]["AccessKeyId"],
-        aws_secret_access_key=assumed_role["Credentials"]["SecretAccessKey"],
-        aws_session_token=assumed_role["Credentials"]["SessionToken"],
-            region_name=region
-    )
-
-    return access_keys
+    return session
 
 
 
