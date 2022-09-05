@@ -44,9 +44,9 @@ pipeline {
 
                    }
                }
-        }   
+        } /*  
         stage('Initialize EDR Service') {
-            /*when {
+            when {
                 expression { return params.INITIALIZE_SERVICE }
             }
             steps {
