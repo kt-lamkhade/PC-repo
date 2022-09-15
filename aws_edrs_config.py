@@ -83,7 +83,6 @@ def update_replication_config():
     
     client = session_call.client('drs')
     response = client.update_replication_configuration_template(
-    arn='string',
     associateDefaultSecurityGroup=True,
     bandwidthThrottling=0,
     createPublicIP=False,
