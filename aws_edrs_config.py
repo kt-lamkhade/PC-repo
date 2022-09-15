@@ -116,16 +116,7 @@ def test_module():
     logger.info(configVar.get('subneyId'))
     Temporary function to test random feaures
     """
-    
-    try:
-        s3_client = session_call.resource('s3')
-        for each_bu in s3_client.buckets.all():
-            print(each_bu.name)
-
-        logger.info("Completed Client creation")
-    except ClientError as err:
-        logger.error(err)
-        logger.warning("Check if the libraries are installed")
+    logger.info(rep_template.get('arn'))
     
 def get_session(profile, region, session_name):
     try:

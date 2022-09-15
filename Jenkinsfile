@@ -64,7 +64,7 @@ pipeline {
         stage('describe Replication Template'){
             steps{
             withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
-                sh "aws drs describe-replication-configuration-templates --region us-east-1 >> ${env.REPLICATION_TEMPLATE}"
+                sh "aws drs describe-replication-configuration-templates --region us-east-1 > ${env.REPLICATION_TEMPLATE}"
             }
             }
         }
@@ -74,7 +74,7 @@ pipeline {
                 script{
                 dir('config-repo'){
                 sh "echo Update Replication Configuration Template"
-                sh "python aws_edrs_config.py update"
+                sh "python aws_edrs_config.py test"
                 }
                 }
                 }
