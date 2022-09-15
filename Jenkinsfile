@@ -74,7 +74,7 @@ pipeline {
         }*/
         stage('describe Replication Template'){
             steps{
-                sh "echo aws drs describe-replication-configuration-templates --region=us-east-1"
+                sh "aws drs describe-replication-configuration-templates --region=us-east-1"
             }
         }
         }
