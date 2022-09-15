@@ -71,8 +71,12 @@ pipeline {
         stage('Update Replication Template'){
             steps{
                 withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                script{
+                dir('config-repo'){
                 sh "echo Update Replication Configuration Template"
                 sh "python aws_edrs_config.py update"
+                }
+                }
                 }
             }
         }/*
