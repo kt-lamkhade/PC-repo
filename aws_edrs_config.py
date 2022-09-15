@@ -119,7 +119,7 @@ def test_module():
     Temporary function to test random feaures
     """
     for i in rep_template['items']:
-        logger.info(i["arn"])
+        logger.info(i["replicationConfigurationTemplateID"])
     
 def get_session(profile, region, session_name):
     try:
