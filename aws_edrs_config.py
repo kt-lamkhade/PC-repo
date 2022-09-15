@@ -79,7 +79,7 @@ def update_replication_config():
     Update and existing replication config
     """
     for i in rep_template['items']:
-        rct_arn = (i["arn"])
+        rct_Id = i["replicationConfigurationTemplateID"]
     
     client = session_call.client('drs')
     response = client.update_replication_configuration_template(
@@ -91,7 +91,7 @@ def update_replication_config():
     defaultLargeStagingDiskType='GP2',
     ebsEncryption=config.get('ebsEncryption'),
     pitPolicy=config.get('pitPolicy'),
-    replicationConfigurationTemplateID=rct_arn,
+    replicationConfigurationTemplateID=rct_Id,
     replicationServerInstanceType='t2.micro',
     replicationServersSecurityGroupsIDs=config_sg.get('replicationServerSGIds'),
     stagingAreaSubnetId=config_env.get('stagingAreaSubnetId'),
