@@ -74,7 +74,7 @@ pipeline {
                 script{
                 dir('config-repo'){
                 sh "echo Update Replication Configuration Template"
-                sh "python aws_edrs_config.py test"
+                sh "python aws_edrs_config.py update"
                 }
                 }
                 }

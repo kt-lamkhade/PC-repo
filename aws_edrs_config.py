@@ -80,7 +80,8 @@ def update_replication_config():
     """
     for i in rep_template['items']:
         rct_Id = i["replicationConfigurationTemplateID"]
-    
+    logger.info(rct_Id)
+    """
     client = session_call.client('drs')
     response = client.update_replication_configuration_template(
     associateDefaultSecurityGroup=True,
@@ -98,7 +99,7 @@ def update_replication_config():
         'Name': 'drs-poc-staging'
     },
     useDedicatedReplicationServer=False
-)
+)"""
 
 
 def delete_replication_config():
