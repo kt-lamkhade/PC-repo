@@ -1,7 +1,7 @@
 def cleanUp()
 {
     echo "Clean up the Workspace"
-    sh "rm -rf ./*"
+    //sh "rm -rf ./*"
 }
 
 pipeline {
