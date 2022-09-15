@@ -74,7 +74,9 @@ pipeline {
         }*/
         stage('describe Replication Template'){
             steps{
-                sh "aws drs describe-replication-configuration-templates --region=us-east-1"
+            withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                sh "aws drs describe-replication-configuration-templates --region us-east-1"
+            }
             }
         }
         }
