@@ -13,6 +13,7 @@ pipeline {
         AWS_CONFIG_FILE = "${env.WORKSPACE}/config-repo/tmpconfig.json"
         AWS_SHARED_CREDENTIALS_FILE = "${env.WORKSPACE}/credentials"
         AWS_SDK_LOAD_CONFIG = 'true'
+        REPLICATION_TEMPLATE = "${env.WORKSPACE}/config-repo/replication_template.json"
     }
     
     stages {
@@ -59,7 +60,22 @@ pipeline {
                 }
                 }
             }            
-        } 
+        }*/
+        stage('describe Replication Template'){
+            steps{
+            withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                sh "aws drs describe-replication-configuration-templates --region us-east-1 >> ${env.REPLICATION_TEMPLATE}"
+            }
+            }
+        }
+        stage('Update Replication Template'){
+            steps{
+                withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                sh "echo Update Replication Configuration Template"
+                sh "python aws_edrs_config.py update"
+                }
+            }
+        }/*
         stage('Create Replication Configuration Template') {
             steps {
             withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
@@ -72,13 +88,6 @@ pipeline {
             }
             }
         }*/
-        stage('describe Replication Template'){
-            steps{
-            withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
-                sh "aws drs describe-replication-configuration-templates --region us-east-1"
-            }
-            }
-        }
         }
     post {
         always {

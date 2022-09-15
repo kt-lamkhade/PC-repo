@@ -78,7 +78,25 @@ def update_replication_config():
     """
     Update and existing replication config
     """
-    ##PLACE_HOLDER##
+    client = session_call.client('drs')
+    response = client.update_replication_configuration_template(
+    arn='string',
+    associateDefaultSecurityGroup=True,
+    bandwidthThrottling=0,
+    createPublicIP=False,
+    dataPlaneRouting='PRIVATE_IP',
+    defaultLargeStagingDiskType='GP2',
+    ebsEncryption=config.get('ebsEncryption'),
+    pitPolicy=config.get('pitPolicy'),
+    replicationConfigurationTemplateID=rep_template.get('arn'),
+    replicationServerInstanceType='t2.micro',
+    replicationServersSecurityGroupsIDs=config_sg.get('replicationServerSGIds'),
+    stagingAreaSubnetId=config_env.get('stagingAreaSubnetId'),
+    stagingAreaTags={
+        'Name': 'drs-poc-staging'
+    },
+    useDedicatedReplicationServer=False
+)
 
 
 def delete_replication_config():
@@ -143,6 +161,8 @@ if __name__ == '__main__':
         config_env = json.load(input_env_file)
     with open('tmpsgfile.json') as input_sg:
         config_sg = json.load(input_sg)
+    with open('replication_template.json') as rep_template_file:
+        rep_template = json.load(rep_template_file)
         
     session_call = get_session(
         profile='aws_credentials',
