@@ -116,8 +116,9 @@ def test_module():
     logger.info(configVar.get('subneyId'))
     Temporary function to test random feaures
     """
-    replicationConfigurationTemplateID=rep_template.get('arn')
-    logger.info("replicationConfigurationTemplateID =", replicationConfigurationTemplateID)
+    replicationConfigurationTemplateID=rep_template.get('items')
+    logger.info("printing replicationConfigurationTemplateID")
+    logger.info(replicationConfigurationTemplateID)
     
 def get_session(profile, region, session_name):
     try:
