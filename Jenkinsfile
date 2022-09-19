@@ -30,9 +30,9 @@ pipeline {
         stage('Parse Prerequisite Parameters'){
 
         environment {
-                "AWS_REGION" = "${params.AWS_REGION}",
-                "SUBNET_ID" = "${params.SUBNET_ID}",
-                "EDR_CLASS" = "${params.EDR_CLASS}",
+                "AWS_REGION" = "${params.AWS_REGION}"
+                "SUBNET_ID" = "${params.SUBNET_ID}"
+                "EDR_CLASS" = "${params.EDR_CLASS}"
                 "SG_ID" = "${params.SG_ID}"
         }
             steps {
