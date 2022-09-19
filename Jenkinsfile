@@ -2,7 +2,7 @@ def cleanUp()
 {
     echo "Clean up the Workspace"
     sh "rm -rf ./*"
-    sh "rm -rf config-repo"
+    sh "rm -rf ${WORKSPACE}/config-repo/*"
     sh "rm -fr ${env.AWS_CONFIG_FILE}"
     sh "rm -fr ${env.AWS_SHARED_CREDENTIALS_FILE}"
 }
@@ -40,7 +40,9 @@ pipeline {
         }
             steps {
                 script {
-                sh "python generate_script.py"
+                    dir("${WORKSPACE}/config-repo/") {
+                        sh "python generate_script.py"
+                    }
                 /*
                     // Construct the JSON argument to the python function
                     def myap = [
