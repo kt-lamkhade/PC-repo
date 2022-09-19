@@ -28,13 +28,23 @@ pipeline {
             }
         } 
         stage('Parse Prerequisite Parameters'){
+
+        environment{
+                "region": "${env.AWS_REGION}",
+                "stagingAreaSubnetId": "${env.SUBNET_ID}",
+                "edrClass": "${env.EDR_CLASS}"
+        }
             steps {
                 script {
+
+                sh "python generate_script.py"
+                /*
                     // Construct the JSON argument to the python function
                     def myap = [
                         "region": "${env.AWS_REGION}",
                         "stagingAreaSubnetId": "${env.SUBNET_ID}",
                         "edrClass": "${env.EDR_CLASS}"
+                        
                     ]
                     // Convert Map to JSON
                     writeJSON file: 'config-repo/tmpfile.json', json: myap
@@ -43,6 +53,7 @@ pipeline {
                         "replicationServerSGIds": sg_id.split(',')
                         ]
                     writeJSON file: 'config-repo/tmpsgfile.json', json: tmpSgIdFile
+                    */
 
                    }
                }
@@ -61,7 +72,7 @@ pipeline {
                 }
                 }
             }            
-        }*/
+        }
         stage('describe Replication Template'){
             steps{
             withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
@@ -74,13 +85,13 @@ pipeline {
                 withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                 script{
                 dir('config-repo'){
-                sh "echo Update Replication Configuration Template"
                 sh "python aws_edrs_config.py create"
+
                 }
                 }
                 }
             }
-        }/*
+        }
         stage('Create Replication Configuration Template') {
             steps {
             withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
@@ -96,7 +107,7 @@ pipeline {
         }
     post {
         always {
-            cleanUp()
+            //cleanUp()
         }
     }
 }
