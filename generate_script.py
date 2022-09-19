@@ -5,7 +5,7 @@ import sys
 
 
 map  = {
-    "region": "${AWS_REGION}",
+    'region': os.environ['AWS_REGION'],
     "stagingAreaSubnetId": "${SUBNET_ID}",
     "edrClass": "${EDR_CLASS}"
 }
