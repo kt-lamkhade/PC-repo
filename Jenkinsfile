@@ -39,6 +39,7 @@ pipeline {
             SG_ID = "${params.SG_ID}"
         }
             steps {
+                withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                 script {
                     dir("${WORKSPACE}/config-repo/") {
                         sh "python generate_script.py"
@@ -62,7 +63,8 @@ pipeline {
 
                    }
                }
-        }   /*
+            } 
+          }  /*
         stage('Initialize EDR Service') {
             when {
                 expression { return params.INITIALIZE_SERVICE }
