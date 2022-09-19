@@ -8,8 +8,7 @@
         "sg-0135933a213ffaac8"
     ],
     
-    "pitPolicy": [
-        [
+    "pitPolicy1": [
         {
             "enabled": true,
             "interval": 10,
@@ -33,7 +32,7 @@
         }
 
     ],
-    [
+    "pitPolicy2": [
         {
             "enabled": true,
             "interval": 10,
@@ -55,7 +54,5 @@
             "ruleID": 3,
             "units": "DAY"
         }
-
     ]
-]
 }

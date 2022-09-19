@@ -130,9 +130,9 @@ def test_module():
     """
     edrClass = config_env.get('edrClass')
     if edrClass == "EDRCLASS1":
-        pitPolicy = config.get('pitPolicy[0]')
+        pitPolicy = config.get('pitPolicy1')
     else:
-        pitPolicy = config.get('pitPolicy[1]')
+        pitPolicy = config.get('pitPolicy2')
     
     logger.info(pitPolicy)
     
