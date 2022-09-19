@@ -1,7 +1,7 @@
 def cleanUp()
 {
     echo "Clean up the Workspace"
-    //sh "rm -rf ./*"
+    sh "rm -rf ./*"
 }
 
 pipeline {
@@ -37,9 +37,7 @@ pipeline {
         }
             steps {
                 script {
-                dir('config-repo'){
                 sh "python generate_script.py"
-                }
                 /*
                     // Construct the JSON argument to the python function
                     def myap = [
