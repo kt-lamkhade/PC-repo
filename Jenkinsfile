@@ -99,18 +99,19 @@ pipeline {
                 }
             }
         }
+        */
         stage('Create Replication Configuration Template') {
             steps {
             withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                 script {
                 dir('config-repo') {
                 sh "echo Create Replication Configuration Template"
-                sh "python aws_edrs_config.py create"
+                sh "python aws_edrs_config.py delete"
                 }
                 }
             }
             }
-        }*/
+        }
         }
     post {
         always {

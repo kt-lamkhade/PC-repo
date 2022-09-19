@@ -1,8 +1,6 @@
 from asyncore import write
 import os
 import json
-import sys
-
 
 map  = {
     'region': os.environ['AWS_REGION'],
@@ -12,10 +10,3 @@ map  = {
 }
 with open('tmpfile.json', 'w') as outfile:
     json.dump(map, outfile)
-
-
-map2 = {
-    
-}
-with open('tmpsgfile.json', 'w') as outfile:
-    json.dump(map2, outfile) 
