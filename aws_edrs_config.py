@@ -105,14 +105,17 @@ def update_replication_config():
 def delete_replication_config():
     """
     Delete and existing replication configuration
-    
-    client = session_call.client('drs')
-    responce = client.delete_replication_configuration_template(
-        
-    )
-    logger.info(responce)
-    ##PLACE_HOLDER##
     """
+    for i in rep_template['items']:
+        rct_Id = i["replicationConfigurationTemplateID"]
+        
+    client = session_call.client('drs')
+    response = client.delete_replication_configuration_template(
+    replicationConfigurationTemplateID=rct_Id
+    )
+    logger.info(response)
+
+ 
 def test_module():
     
     """
