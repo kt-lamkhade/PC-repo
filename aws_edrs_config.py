@@ -45,6 +45,12 @@ def create_replication_template():
     Create a Replication Template which will be used for instance
     replcation from source to DR region
     """
+    edrClass = config_env.get('edrClass')
+    if edrClass == "EDRCLASS1":
+        pitPolicy = config.get('pitPolicy[0]')
+    else:
+        pitPolicy = config.get('pitPolicy[1]')
+
     client = session_call.client('drs')
     response = client.create_replication_configuration_template(
         associateDefaultSecurityGroup=True,
@@ -62,7 +68,7 @@ def create_replication_template():
         tags={
             'Name': 'drs-poc'
         },
-        pitPolicy=config.get('pitPolicy'),
+        pitPolicy=pitPolicy,
         useDedicatedReplicationServer=False
         )
     logger.info(response)
@@ -124,6 +130,7 @@ def test_module():
     """
     for i in rep_template['items']:
         logger.info(i["replicationConfigurationTemplateID"])
+    
     
 def get_session(profile, region, session_name):
     try:

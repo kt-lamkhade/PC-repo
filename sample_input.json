@@ -7,7 +7,9 @@
         "sg-03a18ac09d29c7837",
         "sg-0135933a213ffaac8"
     ],
+    
     "pitPolicy": [
+        [
         {
             "enabled": true,
             "interval": 10,
@@ -30,5 +32,30 @@
             "units": "DAY"
         }
 
+    ],
+    [
+        {
+            "enabled": true,
+            "interval": 10,
+            "retentionDuration": 60,
+            "ruleID": 1,
+            "units": "MINUTE"
+        },
+        {
+            "enabled": true,
+            "interval": 1,
+            "retentionDuration": 24,
+            "ruleID": 2,
+            "units": "HOUR"
+        },
+        {
+            "enabled": true,
+            "interval": 1,
+            "retentionDuration": 10,
+            "ruleID": 3,
+            "units": "DAY"
+        }
+
     ]
+]
 }

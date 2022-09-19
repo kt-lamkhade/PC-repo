@@ -33,7 +33,8 @@ pipeline {
                     // Construct the JSON argument to the python function
                     def myap = [
                         "region": "${env.AWS_REGION}",
-                        "stagingAreaSubnetId": "${env.SUBNET_ID}"
+                        "stagingAreaSubnetId": "${env.SUBNET_ID}",
+                        "edrClass": "${env.EDR_CLASS}"
                     ]
                     // Convert Map to JSON
                     writeJSON file: 'config-repo/tmpfile.json', json: myap
@@ -74,7 +75,7 @@ pipeline {
                 script{
                 dir('config-repo'){
                 sh "echo Update Replication Configuration Template"
-                sh "python aws_edrs_config.py create"
+                sh "python aws_edrs_config.py delete"
                 }
                 }
                 }
