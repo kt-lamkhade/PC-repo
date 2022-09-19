@@ -47,9 +47,9 @@ def create_replication_template():
     """
     edrClass = config_env.get('edrClass')
     if edrClass == "EDRCLASS1":
-        pitPolicy = config.get('pitPolicy[0]')
+        pitPolicy = config.get('pitPolicy1')
     else:
-        pitPolicy = config.get('pitPolicy[1]')
+        pitPolicy = config.get('pitPolicy2')
 
     client = session_call.client('drs')
     response = client.create_replication_configuration_template(
