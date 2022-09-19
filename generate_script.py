@@ -14,7 +14,7 @@ with open('tmpfile.json', 'w') as outfile:
 
 
 map2 = {
-    "sg_id": os.environ['SG_ID']
+    "sg_id": os.environ['SG_ID'].split(',')
 }
 with open('tmpsgfile.json', 'w') as outfile:
     json.dump(map2, outfile) 
