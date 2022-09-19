@@ -42,8 +42,6 @@ pipeline {
                 withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                 script {
                     dir("${WORKSPACE}/config-repo/") {
-                        sh "echo printing workspace"
-                        sh "echo ${WORKSPACE}"
                         sh "python generate_script.py"
                     }
                 /*
