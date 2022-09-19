@@ -87,7 +87,7 @@ pipeline {
             }
             }
         }
-        /*
+        
         stage('Update Replication Template'){
             steps{
                 withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
@@ -100,7 +100,7 @@ pipeline {
                 }
             }
         }
-        */
+        /*
         stage('Create Replication Configuration Template') {
             steps {
             withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
@@ -112,7 +112,7 @@ pipeline {
                 }
             }
             }
-        }
+        }*/
         }
     post {
         always {
