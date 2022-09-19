@@ -60,7 +60,7 @@ def create_replication_template():
         defaultLargeStagingDiskType='ST1',
         ebsEncryption=config.get('ebsEncryption'),
         replicationServerInstanceType='t2.micro',
-        replicationServersSecurityGroupsIDs=config_sg.get('replicationServerSGIds'),
+        replicationServersSecurityGroupsIDs=config_env.get('replicationServerSGIds'),
         stagingAreaSubnetId=config_env.get('stagingAreaSubnetId'),
         stagingAreaTags={
             'Name': 'drs-poc-staging'
@@ -99,7 +99,7 @@ def update_replication_config():
     pitPolicy=config.get('pitPolicy'),
     replicationConfigurationTemplateID=rct_Id,
     replicationServerInstanceType='t2.micro',
-    replicationServersSecurityGroupsIDs=config_sg.get('replicationServerSGIds'),
+    replicationServersSecurityGroupsIDs=config_env.get('replicationServerSGIds'),
     stagingAreaSubnetId=config_env.get('stagingAreaSubnetId'),
     stagingAreaTags={
         'Name': 'drs-poc-staging'
@@ -168,8 +168,6 @@ if __name__ == '__main__':
         config = json.load(input_file)  
     with open('tmpfile.json') as input_env_file:
         config_env = json.load(input_env_file)
-    with open('tmpsgfile.json') as input_sg:
-        config_sg = json.load(input_sg)
     with open('replication_template.json') as rep_template_file:
         rep_template = json.load(rep_template_file)
         

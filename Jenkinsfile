@@ -1,10 +1,10 @@
 def cleanUp()
 {
     echo "Clean up the Workspace"
-   /* sh "rm -rf ./*"
+    sh "rm -rf ./*"
     sh "rm -rf ${WORKSPACE}/config-repo/*"
     sh "rm -fr ${env.AWS_CONFIG_FILE}"
-    sh "rm -fr ${env.AWS_SHARED_CREDENTIALS_FILE}" */
+    sh "rm -fr ${env.AWS_SHARED_CREDENTIALS_FILE}" 
 }
 
 pipeline {
@@ -64,7 +64,7 @@ pipeline {
                    }
                }
             } 
-          }  /*
+          }  
         stage('Initialize EDR Service') {
             when {
                 expression { return params.INITIALIZE_SERVICE }
@@ -73,13 +73,12 @@ pipeline {
                 withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                 script {
                     dir('config-repo') {
-                      sh "echo Initialize EDR Service inside"
                       sh "python3 aws_edrs_config.py init"
                     }
                 }
                 }
             }            
-        }*/
+        }
         stage('describe Replication Template'){
             steps{
             withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
@@ -88,25 +87,23 @@ pipeline {
             }
         }
         
-        stage('Update Replication Template'){
+        stage('Create Replication Template'){
             steps{
                 withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                 script{
                 dir('config-repo'){
                 sh "python aws_edrs_config.py create"
-
                 }
                 }
                 }
             }
         }
         /*
-        stage('Create Replication Configuration Template') {
+        stage('delete Replication Configuration Template') {
             steps {
             withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                 script {
                 dir('config-repo') {
-                sh "echo Create Replication Configuration Template"
                 sh "python aws_edrs_config.py delete"
                 }
                 }
