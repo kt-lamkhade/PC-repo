@@ -128,9 +128,13 @@ def test_module():
     logger.info(configVar.get('subneyId'))
     Temporary function to test random feaures
     """
-    for i in rep_template['items']:
-        logger.info(i["replicationConfigurationTemplateID"])
+    edrClass = config_env.get('edrClass')
+    if edrClass == "EDRCLASS1":
+        pitPolicy = config.get('pitPolicy[0]')
+    else:
+        pitPolicy = config.get('pitPolicy[1]')
     
+    logger.info(pitPolicy)
     
 def get_session(profile, region, session_name):
     try:
