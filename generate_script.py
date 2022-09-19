@@ -6,7 +6,7 @@ map  = {
     'region': os.environ['AWS_REGION'],
     "stagingAreaSubnetId": os.environ['SUBNET_ID'],
     "edrClass": os.environ['EDR_CLASS'],
-    "sg_id": os.environ['SG_ID'].split(',')
+    "replicationServerSGIds": os.environ['SG_ID'].split(',')
 }
 with open('tmpfile.json', 'w') as outfile:
     json.dump(map, outfile)
