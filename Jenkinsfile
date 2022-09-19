@@ -37,8 +37,9 @@ pipeline {
         }
             steps {
                 script {
-
-                sh "python generate_script.py"
+                    dir('config-repo') {
+                        sh "python generate_script.py"
+                    }
                 /*
                     // Construct the JSON argument to the python function
                     def myap = [
