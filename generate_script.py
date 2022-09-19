@@ -4,15 +4,15 @@ import sys
 
 
 map  = {
-    "region": "${env.AWS_REGION}",
-    "stagingAreaSubnetId": "${env.SUBNET_ID}",
-    "edrClass": "${env.EDR_CLASS}"
+    "region": "${AWS_REGION}",
+    "stagingAreaSubnetId": "${SUBNET_ID}",
+    "edrClass": "${EDR_CLASS}"
 }
 with open('config-repo/tmpfile.json', 'w') as outfile:
     json.dump(map, outfile)
 
 map2 = {
-    "sg_id": "${env.SG_ID}"
+    "sg_id": "${SG_ID}"
 }
-with open('config-repo/tmpsgfile.json', 'w') as outputfile:
+with open('config-repo/tmpsgfile.json', 'w') as outfile:
     json.dump(map2, outfile) 
