@@ -136,13 +136,13 @@ def test_module():
         pitPolicy = config.get('pitPolicy2')
     """
     ec2_client = session_call.client('ec2')
-    filters = [{'Name':'tag:Name', 'Values':['stajing*']}, 'VpcId'=='vpc-0ec4fd6ab42babd17']
+    filters = [{'Name':'tag:Name', 'Values':['stajing*']}]
 
-    sn_all = ec2_client.describe_subnets(Filters=filters)
+    sn_all = ec2_client.describe_subnets(Filters=filters,VpcId='vpc-0ec4fd6ab42babd17')
     for sn in sn_all['Subnets'] :
         print(sn['SubnetId'])
     
-    sg_all = ec2_client.describe_security_groups(Filters=filters)
+    sg_all = ec2_client.describe_security_groups(Filters=filters,VpcId='vpc-0ec4fd6ab42babd17')
     for sg in sg_all['SecurityGroups']:
         print(sg['GroupId'])
 
