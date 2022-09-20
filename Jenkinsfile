@@ -29,16 +29,31 @@ pipeline {
               sh "echo aws_access_key_id=${env.AWS_CREDENTIALS_USR} >> ${env.AWS_SHARED_CREDENTIALS_FILE}"
               sh "echo aws_secret_access_key=${env.AWS_CREDENTIALS_PSW} >> ${env.AWS_SHARED_CREDENTIALS_FILE}"
             }
-        } /*
+        } 
         stage('Parse Prerequisite Parameters'){
-
-        environment {
-            AWS_REGION = "${params.AWS_REGION}"
-            SUBNET_ID = "${params.SUBNET_ID}"
-            EDR_CLASS = "${params.EDR_CLASS}"
-            SG_ID = "${params.SG_ID}"
+            environment {
+                AWS_REGION = "${params.AWS_REGION}"
+                SUBNET_ID = "${params.SUBNET_ID}"
+                EDR_CLASS = "${params.EDR_CLASS}"
+                SG_ID = "${params.SG_ID}"
+            }
+            steps {
+                withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+            script {
+                dir("${WORKSPACE}/config-repo/") {
+                sh "python generate_script.py"
+                }
+                }
+            }
+            }
         }
-        }*/
+        stage('describe Replication Template'){
+            steps{
+            withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                sh "aws drs describe-replication-configuration-templates --region us-east-1 > ${env.REPLICATION_TEMPLATE}"
+            }
+            }
+        }
     
         stage('test Replication Configuration Template') {
             steps {
@@ -53,13 +68,7 @@ pipeline {
         }
     }
         /*
-            steps {
-                withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
-                script {
-                    dir("${WORKSPACE}/config-repo/") {
-                        sh "python generate_script.py"
-                    }
-                
+
                     // Construct the JSON argument to the python function
                     def myap = [
                         "region": "${env.AWS_REGION}",
@@ -94,13 +103,7 @@ pipeline {
                 }
             }            
         }
-        stage('describe Replication Template'){
-            steps{
-            withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
-                sh "aws drs describe-replication-configuration-templates --region us-east-1 > ${env.REPLICATION_TEMPLATE}"
-            }
-            }
-        }
+
         
         stage('Create Replication Template'){
             steps{
