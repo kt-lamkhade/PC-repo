@@ -29,7 +29,7 @@ pipeline {
               sh "echo aws_access_key_id=${env.AWS_CREDENTIALS_USR} >> ${env.AWS_SHARED_CREDENTIALS_FILE}"
               sh "echo aws_secret_access_key=${env.AWS_CREDENTIALS_PSW} >> ${env.AWS_SHARED_CREDENTIALS_FILE}"
             }
-        } 
+        } /*
         stage('Parse Prerequisite Parameters'){
 
         environment {
@@ -38,7 +38,20 @@ pipeline {
             EDR_CLASS = "${params.EDR_CLASS}"
             SG_ID = "${params.SG_ID}"
         }
+        }*/
+    
+        stage('test Replication Configuration Template') {
+            steps {
+            withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                script {
+                dir('config-repo') {
+                sh "python aws_edrs_config.py test"
+                }
+                }
+            }
+            }
         }
+    }
         /*
             steps {
                 withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
@@ -101,18 +114,8 @@ pipeline {
             }
         }*/
 
-        stage('test Replication Configuration Template') {
-            steps {
-            withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
-                script {
-                dir('config-repo') {
-                sh "python aws_edrs_config.py test"
-                }
-                }
-            }
-            }
-        }
-        }
+
+        
     post {
         always {
             cleanUp()
