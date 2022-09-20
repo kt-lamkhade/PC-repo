@@ -38,6 +38,7 @@ pipeline {
             EDR_CLASS = "${params.EDR_CLASS}"
             SG_ID = "${params.SG_ID}"
         }
+        }
         /*
             steps {
                 withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
@@ -112,8 +113,6 @@ pipeline {
             }
         }
         }
-    }
-
     post {
         always {
             cleanUp()
