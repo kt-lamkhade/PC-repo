@@ -11,6 +11,7 @@ import os
 from readline import append_history_file
 import sys
 import logging
+from urllib import response
 import fire
 
 import boto3
@@ -125,8 +126,11 @@ def delete_replication_config():
 
  
 def test_module():
+        client = session_call.client('drs')
+        response = client.describe_replication_configuration_templates()
+        logger.info(response)   
     
-    """
+"""
     logger.info(configVar.get('subneyId'))
     Temporary function to test random feaures
     
@@ -135,7 +139,6 @@ def test_module():
         pitPolicy = config.get('pitPolicy1')
     else:
         pitPolicy = config.get('pitPolicy2')
-    """
     ec2_client = session_call.client('ec2')
     filters = [{'Name':'tag:Name', 'Values':['stajing*']}]
 
@@ -157,7 +160,7 @@ def test_module():
             sgID.append(sg['GroupId'])
     
     print(sgID)
-
+    """
 
     
 def get_session(profile, region, session_name):

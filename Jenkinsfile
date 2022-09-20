@@ -38,13 +38,14 @@ pipeline {
             EDR_CLASS = "${params.EDR_CLASS}"
             SG_ID = "${params.SG_ID}"
         }
+        /*
             steps {
                 withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                 script {
                     dir("${WORKSPACE}/config-repo/") {
                         sh "python generate_script.py"
                     }
-                /*
+                
                     // Construct the JSON argument to the python function
                     def myap = [
                         "region": "${env.AWS_REGION}",
@@ -59,7 +60,7 @@ pipeline {
                         "replicationServerSGIds": sg_id.split(',')
                         ]
                     writeJSON file: 'config-repo/tmpsgfile.json', json: tmpSgIdFile
-                    */
+                    
 
                    }
                }
@@ -97,19 +98,19 @@ pipeline {
                 }
                 }
             }
-        }
-        /*
-        stage('delete Replication Configuration Template') {
+        }*/
+
+        stage('test Replication Configuration Template') {
             steps {
             withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                 script {
                 dir('config-repo') {
-                sh "python aws_edrs_config.py delete"
+                sh "python aws_edrs_config.py test"
                 }
                 }
             }
             }
-        }*/
+        }
         }
     post {
         always {
