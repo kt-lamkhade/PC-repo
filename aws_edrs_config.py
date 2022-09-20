@@ -141,12 +141,14 @@ def test_module():
     print("Subnet:-")
     sn_all = ec2_client.describe_subnets(Filters=filters)
     for sn in sn_all['Subnets'] :
-        print(sn)
+        if sn['VpcId'] == "vpc-0ec4fd6ab42babd17":
+            print(sn['SubnetId'])
 
     print("Security Group:-")
     sg_all = ec2_client.describe_security_groups(Filters=filters)
     for sg in sg_all['SecurityGroups']:
-        print(sg)
+        if sg['VpcId'] == "vpc-0ec4fd6ab42babd17":
+            print(sg['GroupId'])
 
 
     
