@@ -144,7 +144,7 @@ def test_module():
     print('----------------')
     sg_all = ec2_client.describe_security_groups()
     for sg in sg_all['SecurityGroups'] :
-        print(sg['group_id'])
+        print(sg['GroupId'])
 
 
     
