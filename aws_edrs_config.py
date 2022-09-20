@@ -8,6 +8,7 @@ based on an input JSON file
 
 import json
 import os
+from readline import append_history_file
 import sys
 import logging
 import fire
@@ -150,9 +151,11 @@ def test_module():
 
     print("Security Group:-")
     sg_all = ec2_client.describe_security_groups(Filters=filters)
+    sgID = []
     for sg in sg_all['SecurityGroups']:
         if sg['VpcId'] == "vpc-0ec4fd6ab42babd17":
-            print(sg['GroupId'])
+            sgID.append(sg['GroupId'])
+            print(sgID)
 
 
     
