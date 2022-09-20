@@ -140,8 +140,8 @@ def test_module():
     filters = [{'Name':'tag:Name', 'Values':['stajing*']}]
 
     print("VPC ID:-")
-    for vpc in ec2_client.describe_vpcs()['Vpcs']:
-        print(vpc)
+    for vpc in ec2_client.describe_vpcs(Filters=filters)['Vpcs']:
+        print(vpc['VpcId'])
 
     print("Subnet:-")
     sn_all = ec2_client.describe_subnets(Filters=filters)
