@@ -84,6 +84,7 @@ def update_replication_config():
     """
     Update and existing replication config
     """
+
     for i in rep_template['items']:
         rct_Id = i["replicationConfigurationTemplateID"]
     logger.info(rct_Id)
@@ -127,14 +128,25 @@ def test_module():
     """
     logger.info(configVar.get('subneyId'))
     Temporary function to test random feaures
-    """
+    
     edrClass = config_env.get('edrClass')
     if edrClass == "EDRCLASS1":
         pitPolicy = config.get('pitPolicy1')
     else:
         pitPolicy = config.get('pitPolicy2')
+    """
+    ec2_client = session_call.client('ec2')
+    sn_all = ec2_client.describe_subnets()
+    for sn in sn_all['Subnets'] :
+        print("subnet list", sn['SubnetName'])
     
-    logger.info(pitPolicy)
+    print('All Security Groups:')
+    print('----------------')
+    sg_all = ec2_client.describe_security_groups()
+    for sg in sg_all['SecurityGroups'] :
+        print(sg['GroupName'])
+
+
     
 def get_session(profile, region, session_name):
     try:
