@@ -138,13 +138,13 @@ def test_module():
     ec2_client = session_call.client('ec2')
     sn_all = ec2_client.describe_subnets()
     for sn in sn_all['Subnets'] :
-        print("subnet list", sn['SubnetName'])
+        print("subnet list", sn['SubnetId'])
     
     print('All Security Groups:')
     print('----------------')
     sg_all = ec2_client.describe_security_groups()
     for sg in sg_all['SecurityGroups'] :
-        print(sg['GroupName'])
+        print(sg['group_id'])
 
 
     
