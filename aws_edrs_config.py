@@ -155,7 +155,8 @@ def test_module():
     for sg in sg_all['SecurityGroups']:
         if sg['VpcId'] == "vpc-0ec4fd6ab42babd17":
             sgID.append(sg['GroupId'])
-            print(sgID)
+    
+    print(sgID)
 
 
     
