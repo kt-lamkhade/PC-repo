@@ -141,7 +141,7 @@ def test_module():
     print("VPC ID:-")
     vpc_all = ec2_client.describe_vpcs(Filters=filters)
     for vpc in vpc_all:
-        print(vpc['VpcId'])
+        print(vpc)
 
     print("Subnet:-")
     sn_all = ec2_client.describe_subnets(Filters=filters)
