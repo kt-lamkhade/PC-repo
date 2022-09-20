@@ -140,7 +140,7 @@ def test_module():
 
     print("VPC ID:-")
     vpc_all = ec2_client.describe_vpcs(Filters=filters)
-    for vpc in vpc_all['VpcId']:
+    for vpc in vpc_all:
         print(vpc['VpcId'])
 
     print("Subnet:-")
