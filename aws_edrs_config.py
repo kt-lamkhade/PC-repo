@@ -47,11 +47,8 @@ def create_replication_template():
     """
     Create a Replication Template which will be used for instance replcation from source to DR region
     """
-    edrClass = configEnv.get('edrClass')
-    if edrClass == "EDRCLASS1":
-        pitPolicy = config.get('pitPolicy1')
-    else:
-        pitPolicy = config.get('pitPolicy2')
+    with open('tmpfile.json') as input_env_file:
+        configEnv = json.load(input_env_file)
 
     client = session_call.client('drs')
     response = client.create_replication_configuration_template(
@@ -70,7 +67,7 @@ def create_replication_template():
         tags={
             'Name': 'drs-poc'
         },
-        pitPolicy=pitPolicy,
+        pitPolicy=configEnv.get('pitPolicy'),
         useDedicatedReplicationServer=False
         )
     logger.info(response)
@@ -195,14 +192,14 @@ if __name__ == '__main__':
     logger.info("Initialize boto3 session")
     with open('sample_input.json') as input_file:
         config = json.load(input_file)
-    with open('tmpfile.json') as input_env_file:
-        configEnv = json.load(input_env_file)
+
     session_call = get_session(
         profile='aws_credentials',
         region=os.environ['AWS_REGION'],
         session_name='aws-drs-session'
     )
- 
+
+
 
 
 
