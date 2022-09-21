@@ -13,6 +13,7 @@ import sys
 import logging
 from urllib import response
 import fire
+from asyncore import write
 
 import boto3
 from botocore.exceptions import ClientError
@@ -113,9 +114,9 @@ def parse_prerequisite_parameters():
 
     edrClass = os.environ['EDR_CLASS']
     if edrClass == "EDRCLASS1":
-        pitPolicy = config.get('pitPolicy1')
+        PIT_POLICY = config.get('pitPolicy1')
     else:
-        pitPolicy = config.get('pitPolicy2')
+        PIT_POLICY = config.get('pitPolicy2')
 
     ec2_client = session_call.client('ec2')
 
@@ -130,17 +131,16 @@ def parse_prerequisite_parameters():
             SUBNET_ID = sn['SubnetId']
 
     sg_all = ec2_client.describe_security_groups(Filters=filters)
-    sgID = []
+    SG_ID = []
     for sg in sg_all['SecurityGroups']:
         if sg['VpcId'] == vpcID:
-            sgID.append(sg['GroupId'])
-    
-    print(sgID)
+            SG_ID.append(sg['GroupId'])
+
     map  = {
     'region': os.environ['AWS_REGION'],
     "stagingAreaSubnetId": SUBNET_ID,
-    "pitPolicy": pitPolicy,
-    "replicationServerSGIds": sgID
+    "pitPolicy": PIT_POLICY,
+    "replicationServerSGIds": SG_ID
     }
     with open('tmpfile.json', 'w') as outfile:
         json.dump(map, outfile)
