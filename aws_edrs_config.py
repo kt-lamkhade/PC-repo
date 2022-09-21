@@ -9,7 +9,6 @@ based on an input JSON file
 import json
 import os
 from readline import append_history_file
-from symbol import parameters
 import sys
 import logging
 from urllib import response
