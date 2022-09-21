@@ -1,13 +1,7 @@
 {
-    "assumeRoleArn": "arn:aws:iam::151830815866:role/itmpa2l-infra-dev-infraadmin-assumerole",
-    "stageId": "stage-x-001",
+    "assumeRoleArn": "arn:aws:iam::719446341377:role/drsRole",
     "ebsEncryption": "DEFAULT",
     "ebsEncryptionKeyArn": "string",
-    "replicationServerSGIds": [
-        "sg-03a18ac09d29c7837",
-        "sg-0135933a213ffaac8"
-    ],
-    
     "pitPolicy1": [
         {
             "enabled": true,

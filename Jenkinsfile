@@ -16,7 +16,6 @@ pipeline {
         AWS_CONFIG_FILE = "${env.WORKSPACE}/config-repo/tmpconfig.json"
         AWS_SHARED_CREDENTIALS_FILE = "${env.WORKSPACE}/credentials"
         AWS_SDK_LOAD_CONFIG = 'true'
-        REPLICATION_TEMPLATE = "${env.WORKSPACE}/config-repo/replication_template.json"
     }
     
     stages {
@@ -41,54 +40,12 @@ pipeline {
                 withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
             script {
                 dir("${WORKSPACE}/config-repo/") {
-                sh "python generate_script.py"
+                sh "python aws_edrs_config.py parse"
                 }
                 }
             }
             }
         }
-        stage('describe Replication Template'){
-            steps{
-            withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
-                sh "aws drs describe-replication-configuration-templates --region us-east-1 > ${env.REPLICATION_TEMPLATE}"
-            }
-            }
-        }
-    
-        stage('test Replication Configuration Template') {
-            steps {
-            withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
-                script {
-                dir('config-repo') {
-                sh "python aws_edrs_config.py test"
-                }
-                }
-            }
-            }
-        }
-    }
-        /*
-
-                    // Construct the JSON argument to the python function
-                    def myap = [
-                        "region": "${env.AWS_REGION}",
-                        "stagingAreaSubnetId": "${env.SUBNET_ID}",
-                        "edrClass": "${env.EDR_CLASS}"
-                        
-                    ]
-                    // Convert Map to JSON
-                    writeJSON file: 'config-repo/tmpfile.json', json: myap
-                    sg_id = "${env.SG_ID}"
-                    def tmpSgIdFile = [
-                        "replicationServerSGIds": sg_id.split(',')
-                        ]
-                    writeJSON file: 'config-repo/tmpsgfile.json', json: tmpSgIdFile
-                    
-
-                   }
-               }
-            } 
-          }  
         stage('Initialize EDR Service') {
             when {
                 expression { return params.INITIALIZE_SERVICE }
@@ -96,29 +53,24 @@ pipeline {
             steps {
                 withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                 script {
-                    dir('config-repo') {
-                      sh "python3 aws_edrs_config.py init"
-                    }
+                dir('config-repo') {
+                sh "python3 aws_edrs_config.py init"
+                }
                 }
                 }
             }            
-        }
-
-        
+        } 
         stage('Create Replication Template'){
             steps{
                 withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'kiran-aws-creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                 script{
                 dir('config-repo'){
-                sh "python aws_edrs_config.py test"
+                sh "python aws_edrs_config.py create"
                 }
                 }
                 }
             }
-        }*/
-
-
-        
+        } 
     post {
         always {
             cleanUp()

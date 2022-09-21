@@ -44,10 +44,9 @@ def init_edr_service():
 
 def create_replication_template():
     """
-    Create a Replication Template which will be used for instance
-    replcation from source to DR region
+    Create a Replication Template which will be used for instance replcation from source to DR region
     """
-    edrClass = config_env.get('edrClass')
+    edrClass = configEnv.get('edrClass')
     if edrClass == "EDRCLASS1":
         pitPolicy = config.get('pitPolicy1')
     else:
@@ -62,8 +61,8 @@ def create_replication_template():
         defaultLargeStagingDiskType='ST1',
         ebsEncryption=config.get('ebsEncryption'),
         replicationServerInstanceType='t2.micro',
-        replicationServersSecurityGroupsIDs=config_env.get('replicationServerSGIds'),
-        stagingAreaSubnetId=config_env.get('stagingAreaSubnetId'),
+        replicationServersSecurityGroupsIDs=configEnv.get('replicationServerSGIds'),
+        stagingAreaSubnetId=configEnv.get('stagingAreaSubnetId'),
         stagingAreaTags={
             'Name': 'drs-poc-staging'
         },
@@ -87,7 +86,7 @@ def update_replication_config():
     Update and existing replication config
     """
 
-    for i in rep_template['items']:
+    for i in repTemplate['items']:
         rct_Id = i["replicationConfigurationTemplateID"]
     logger.info(rct_Id)
   
@@ -102,20 +101,55 @@ def update_replication_config():
     pitPolicy=config.get('pitPolicy'),
     replicationConfigurationTemplateID=rct_Id,
     replicationServerInstanceType='t2.micro',
-    replicationServersSecurityGroupsIDs=config_env.get('replicationServerSGIds'),
-    stagingAreaSubnetId=config_env.get('stagingAreaSubnetId'),
+    replicationServersSecurityGroupsIDs=configEnv.get('replicationServerSGIds'),
+    stagingAreaSubnetId=configEnv.get('stagingAreaSubnetId'),
     stagingAreaTags={
         'Name': 'drs-poc-staging'
     },
     useDedicatedReplicationServer=False
 )
 
+def parse_prerequisite_parameters():
+
+    edrClass = os.environ['EDR_CLASS']
+    if edrClass == "EDRCLASS1":
+        pitPolicy = config.get('pitPolicy1')
+    else:
+        pitPolicy = config.get('pitPolicy2')
+
+    ec2_client = session_call.client('ec2')
+
+    filters = [{'Name':'tag:Name', 'Values':['staging-area*']}]
+
+    for vpc in ec2_client.describe_vpcs(Filters=filters)['Vpcs']:
+        vpcID = vpc['VpcId']
+
+    sn_all = ec2_client.describe_subnets(Filters=filters)
+    for sn in sn_all['Subnets'] :
+        if sn['VpcId'] == vpcID:
+            SUBNET_ID = sn['SubnetId']
+
+    sg_all = ec2_client.describe_security_groups(Filters=filters)
+    sgID = []
+    for sg in sg_all['SecurityGroups']:
+        if sg['VpcId'] == vpcID:
+            sgID.append(sg['GroupId'])
+    
+    print(sgID)
+    map  = {
+    'region': os.environ['AWS_REGION'],
+    "stagingAreaSubnetId": SUBNET_ID,
+    "pitPolicy": pitPolicy,
+    "replicationServerSGIds": sgID
+    }
+    with open('tmpfile.json', 'w') as outfile:
+        json.dump(map, outfile)
 
 def delete_replication_config():
     """
     Delete and existing replication configuration
     """
-    for i in rep_template['items']:
+    for i in repTemplate['items']:
         rct_Id = i["replicationConfigurationTemplateID"]
         
     client = session_call.client('drs')
@@ -129,38 +163,6 @@ def test_module():
         client = session_call.client('drs')
         response = client.describe_replication_configuration_templates()
         logger.info(response)   
-    
-"""
-    logger.info(configVar.get('subneyId'))
-    Temporary function to test random feaures
-    
-    edrClass = config_env.get('edrClass')
-    if edrClass == "EDRCLASS1":
-        pitPolicy = config.get('pitPolicy1')
-    else:
-        pitPolicy = config.get('pitPolicy2')
-    ec2_client = session_call.client('ec2')
-    filters = [{'Name':'tag:Name', 'Values':['stajing*']}]
-
-    print("VPC ID:-")
-    for vpc in ec2_client.describe_vpcs(Filters=filters)['Vpcs']:
-        print(vpc['VpcId'])
-
-    print("Subnet:-")
-    sn_all = ec2_client.describe_subnets(Filters=filters)
-    for sn in sn_all['Subnets'] :
-        if sn['VpcId'] == "vpc-0ec4fd6ab42babd17":
-            print(sn['SubnetId'])
-
-    print("Security Group:-")
-    sg_all = ec2_client.describe_security_groups(Filters=filters)
-    sgID = []
-    for sg in sg_all['SecurityGroups']:
-        if sg['VpcId'] == "vpc-0ec4fd6ab42babd17":
-            sgID.append(sg['GroupId'])
-    
-    print(sgID)
-    """
 
     
 def get_session(profile, region, session_name):
@@ -168,7 +170,7 @@ def get_session(profile, region, session_name):
         session = boto3.session.Session(profile_name=profile)
         stsClient = session.client("sts")
         assumed_role = stsClient.assume_role(
-            RoleArn="arn:aws:iam::719446341377:role/drsRole",
+            RoleArn=config.get('assumeRoleArn'),
             RoleSessionName=session_name
         )
     except NameError as err:
@@ -195,13 +197,13 @@ if __name__ == '__main__':
         config = json.load(input_file) 
  
     with open('tmpfile.json') as input_env_file:
-        config_env = json.load(input_env_file)
+        configEnv = json.load(input_env_file)
     with open('replication_template.json') as rep_template_file:
-        rep_template = json.load(rep_template_file)
+        repTemplate = json.load(rep_template_file)
         
     session_call = get_session(
         profile='aws_credentials',
-        region=config_env.get('region'),
+        region=configEnv.get('region'),
         session_name='aws-drs-session'
     )
 
@@ -212,7 +214,8 @@ if __name__ == '__main__':
             'create': create_replication_template,
             'update': update_replication_config,
             'delete': delete_replication_config,
-            'test': test_module
+            'test': test_module,
+            'parse': parse_prerequisite_parameters
         }
     )
    
