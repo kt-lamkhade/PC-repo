@@ -29,7 +29,7 @@ pipeline {
               sh "echo aws_secret_access_key=${env.AWS_CREDENTIALS_PSW} >> ${env.AWS_SHARED_CREDENTIALS_FILE}"
             }
         } 
-        stage('Parse Prerequisite Parameters'){
+        stage('Prepare Prerequisite Parameters'){
             environment {
                 AWS_REGION = "${params.AWS_REGION}"
                 SUBNET_ID = "${params.SUBNET_ID}"
